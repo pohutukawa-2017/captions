@@ -18,7 +18,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx']
-
   },
   plugins: [
     new LiveReloadPlugin()

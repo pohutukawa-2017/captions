@@ -5,7 +5,7 @@
   "main": "server/index",
   "scripts": {
     "dev": "nodemon --watch server & webpack.dev --watch",
-    "test": "ava -v test/**/*.test.js",
+    "test": "ava -v -s test/**/*.test.js --fail-fast",
     "eslint": "eslint src test",
     "start": "node server",
     "postinstall": "webpack --config webpack.prod.config.js"
