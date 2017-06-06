@@ -4,11 +4,11 @@
   "description": "React Redux with simple async action",
   "main": "server/index",
   "scripts": {
-    "dev": "nodemon --watch server & webpack --watch",
+    "dev": "nodemon --watch server & webpack.dev --watch",
     "test": "ava -v test/**/*.test.js",
     "eslint": "eslint src test",
     "start": "node server",
-    "postinstall": "webpack"
+    "postinstall": "webpack --config webpack.prod.config.js"
   },
   "keywords": [
     "react",
