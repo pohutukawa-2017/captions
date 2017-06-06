@@ -57,6 +57,5 @@
     "supertest": "^3.0.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-livereload-plugin": "^0.11.0"
-
   }
 }
