@@ -1,13 +1,15 @@
 import React from 'react'
+import Navbar from './Navbar'
 
-import AddWord from '../containers/AddWord'
-import Words from '../containers/Words'
+import ImageList from './ImageList'
 
-const App = () => (
-  <div className='app-container'>
-    <Words />
-    <AddWord />
-  </div>
-)
+const App = () => {
+  return (
+    <div className='app'>
+      <Navbar />
+      <ImageList />
+    </div>
+  )
+}
 
 export default App
