@@ -21,3 +21,8 @@
 li {
   list-style: none;
 }
+
+.login-page {
+  display: flex;
+  justify-content: center;
+}
