@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { storePicture } from '../actions'
 
 class UploadButton extends React.Component {
 
@@ -6,7 +8,8 @@ class UploadButton extends React.Component {
     super(props)
     this.state = {
       error: null,
-      addedImage: ''
+      addedImage: '',
+      confirmUpload: ''
     }
   }
 
@@ -14,13 +17,14 @@ class UploadButton extends React.Component {
     cloudinary.openUploadWidget({cloud_name: 'dboovyrqb', upload_preset: 'p8w4fgph', tags: ['test']},
       (error, result) => {
         this.setState({ addedImage: result[0].url })
+        this.props.storeIt(result[0].url)
+        // Todo handle error
       })
   }
 
   render () {
     return (
       <div>
-        {console.log(this.state.addedImage)}
         <img src={this.state.addedImage} />
         <button onClick={this.uploadWidget.bind(this)} className='upload-button'>
             Add Image
@@ -29,6 +33,20 @@ class UploadButton extends React.Component {
     )
   }
 }
-export default UploadButton
 
-// {if (!!result[0].url) {<img src={result[0].url} />} }
+function mapDispatchToProps (dispatch) {
+  return {
+    storeIt: () => {
+      const action = storePicture()
+      dispatch(action)
+    }
+  }
+}
+
+function mapStateToProps (state) {
+  return {
+    
+  }
+}
+
+export default connect(null, mapDispatchToProps)(UploadButton)

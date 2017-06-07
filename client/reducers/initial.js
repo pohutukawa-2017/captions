@@ -5,4 +5,4 @@ const initial = (state = {}, action) => {
   }
 }
 
-export default initial
+export default { initial }
