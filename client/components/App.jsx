@@ -1,9 +1,13 @@
 import React from 'react'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import ImageContainer from './ImageContainer'
 
 const App = () => (
-  <div className='app'>
-  <h1>Hello World</h1>
-  </div>
+  <Router>
+    <div className='app'>
+      <Route path="/images/:id" component={ImageContainer} />
+    </div>
+  </Router>
 )
 
 export default App
