@@ -17,7 +17,6 @@ export function getCaptionsById (id, callback) {
     if (err) {
       callback(err)
     } else {
-      console.log(res.body.result)
       callback(null, res.body.result)
     }
   })
