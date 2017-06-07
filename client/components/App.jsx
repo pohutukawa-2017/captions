@@ -1,8 +1,12 @@
 import React from 'react'
 
+import ImageSpike from './ImageSpike'
+import UploadButton from './UploadButton'
+
 const App = () => (
   <div className='app'>
-  <h1>Hello World</h1>
+    <ImageSpike />
+    <UploadButton />
   </div>
 )
 
