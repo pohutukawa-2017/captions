@@ -11,7 +11,6 @@ function CaptionList (props) {
           </div>
         )
       })}
-
     </div>
   )
 }

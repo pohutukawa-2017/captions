@@ -8,7 +8,6 @@ const App = () => (
     <div className='app'>
       <Route path='/images/:id/:captionid' component={ImageCaption} />
       <Route exact path='/images/:id' component={ImageContainer} />
-
     </div>
   </Router>
 )

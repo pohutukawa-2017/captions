@@ -20,9 +20,8 @@ class ImageContainer extends React.Component {
 
   getImagePath () {
     const id = Number(this.props.match.params.id)
-
     getImageById(id, (err, res) => {
-      if (err) console.log(err) // TODO: Error component
+      if (err) return console.log(err) // TODO: Error component
       this.props.dispatch(imagePath(res))
     })
   }
@@ -30,7 +29,7 @@ class ImageContainer extends React.Component {
   getCaptionsList () {
     const id = Number(this.props.match.params.id)
     getCaptionsById(id, (err, res) => {
-      if (err) console.log(err) // TODO: Error component
+      if (err) return console.log(err) // TODO: Error component
       this.props.dispatch(captions(res))
     })
   }

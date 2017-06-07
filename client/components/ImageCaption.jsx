@@ -1,19 +1,16 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class ImageCaption extends React.Component {
-  constructor (props) {
-    super(props)
-  }
   render () {
-    console.log(this.props.image)
     const id = Number(this.props.match.params.captionid)
     const singleCap = this.props.captionsList.find((caption) => {
       return caption.id === id
     })
     return (
       <div className='image-caption'>
-        <img src={this.props.image.path} />
+        <Link to={`/images/${this.props.image.id}`}> <img src={this.props.image.path} /></Link>
         <p>{singleCap.caption_text}</p>
       </div>
     )
