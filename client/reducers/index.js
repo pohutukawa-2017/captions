@@ -1,9 +1,11 @@
 import {combineReducers} from 'redux'
 
-import initial from './initial'
 import auth from './auth'
+import singleImage from './get-image'
+import captions from './get-captions'
 
 export default combineReducers({
-  initial,
+  singleImage,
+  captions,
   auth
 })
