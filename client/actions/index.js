@@ -1,11 +1,11 @@
-export const getImage = (url) => {
+export const imagePath = (url) => {
   return {
     type: 'GET_IMAGE',
     image: url
   }
 }
 
-export const getCaptions = (captions) => {
+export const captions = (captions) => {
   return {
     type: 'GET_CAPTIONS',
     captions

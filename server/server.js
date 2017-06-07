@@ -14,5 +14,5 @@ server.get('*', function (req, res) {
 module.exports = function (db) {
   server.set('db', db)
   return server
- }
+}
 

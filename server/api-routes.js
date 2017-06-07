@@ -14,14 +14,11 @@ router.get('/images/:id', (req, res) =>{
 })
 
 router.get('/captions/:imageId', (req, res) => {
- db.getCaptionsById(Number(req.params.imageId), connection)
+  db.getCaptionsById(Number(req.params.imageId), connection)
   .then(data => {
     console.log(data)
     res.json({result: data})
   })
 })
-
-
-
 
 module.exports = router
