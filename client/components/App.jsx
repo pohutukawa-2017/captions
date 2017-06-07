@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageCaption from './ImageCaption'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ImageContainer from './ImageContainer'
 
 const App = () => (
