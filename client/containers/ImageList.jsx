@@ -1,27 +1,32 @@
-import React from 'react'
-import ImageThumbnail from './ImageThumbnail'
+import React, {Component} from 'react'
+import ImageThumbnail from '../components/ImageThumbnail'
+import {connect} from 'react-redux'
 
-class ImageList extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      images: []
-    }
+class ImageList extends Component {
+
+  createListImage () {
+    return this.props.images.map((image, key) => {
+      return (
+        <div key={key} className='image-container'>
+          <ImageThumbnail />
+        </div>
+      )
+    })
   }
 
   render () {
     return (
       <div className='listings-container'>
-        {this.state.images.map((image, key) => {
-          return (
-            <div key={key} className='image-container'>
-              <ImageThumbnail />
-            </div>
-          )
-        })}
+        {this.createListImage()}
       </div>
     )
   }
 }
 
-export default ImageList
+function mapStateToProps (state) {
+  return {
+    images: state.images
+  }
+}
+
+export default connect(mapStateToProps)(ImageList)
