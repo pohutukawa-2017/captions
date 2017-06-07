@@ -1,8 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {getImagePath, getCaptionsList} from '../actions/'
 
 class ImageCaption extends React.Component {
+  componentDidMount () {
+    const imageId = this.props.match.params.id
+    this.props.getImagePath(imageId)
+    this.props.getCaptionsList(imageId)
+  }
+
   render () {
     return (
       <div className='image-caption'>
@@ -10,6 +17,16 @@ class ImageCaption extends React.Component {
         <p>{this.props.caption.caption_text}</p>
       </div>
     )
+  }
+}
+
+ImageCaption.defaultProps = {
+  image: {
+    id: 0,
+    path: ''
+  },
+  caption: {
+    caption_text: ''
   }
 }
 
@@ -24,4 +41,15 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(ImageCaption)
+function mapDispatchToProps (dispatch) {
+  return {
+    getImagePath: (id) => {
+      dispatch(getImagePath(id))
+    },
+    getCaptionsList: (id) => {
+      dispatch(getCaptionsList(id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageCaption)
