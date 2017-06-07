@@ -9,7 +9,7 @@ function getCaptionsById (id, conn) {
   .where('image_id', id)
 }
 
-function getImageById (id, conn){ 
+function getImageById (id, conn) {
   return conn('images')
   .select()
   .where('id', id)
