@@ -1,22 +1,12 @@
 
-export const GET_CAPTION = 'GET_ACTION'
-
-export const getCaption = (caption) => {
-  return {
-    type: GET_CAPTION,
-    caption
-  }
-}
-
-export const getImage = (url, id) => {
+export const imagePath = (url) => {
   return {
     type: 'GET_IMAGE',
-    image: url,
-    id
+    image: url
   }
 }
 
-export const getCaptions = (captions) => {
+export const captions = (captions) => {
   return {
     type: 'GET_CAPTIONS',
     captions

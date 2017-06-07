@@ -21,7 +21,7 @@ class ImageCaption extends React.Component {
 function mapStateToProps (state) {
   return {
     image: state.getImage,
-    captionsList: state.getCaptions.captions
+    captionsList: state.captions
   }
 }
 

@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Route, Link} from 'react-router-dom'
-import { apiGetImageById, apiGetCaptionsById } from '../api/'
-import {getImage, getCaptions} from '../actions/'
+import {getImageById, getCaptionsById} from '../api'
+import {imagePath, captions} from '../actions/'
 
 import CaptionList from './CaptionList'
 import Image from './Image'
@@ -21,17 +20,18 @@ class ImageContainer extends React.Component {
 
   getImagePath () {
     const id = Number(this.props.match.params.id)
-	   apiGetImageById(id, (err, res) => {
-     if (err) console.log(err)
-     this.props.dispatch(getImage(res.path, id))
-   })
+
+    getImageById(id, (err, res) => {
+      if (err) console.log(err) // TODO: Error component
+      this.props.dispatch(imagePath(res))
+    })
   }
 
   getCaptionsList () {
     const id = Number(this.props.match.params.id)
-    apiGetCaptionsById(id, (err, res) => {
-      if (err) console.log(err)
-      this.props.dispatch(getCaptions(res))
+    getCaptionsById(id, (err, res) => {
+      if (err) console.log(err) // TODO: Error component
+      this.props.dispatch(captions(res))
     })
   }
 
@@ -40,7 +40,6 @@ class ImageContainer extends React.Component {
       <div className='image-container'>
         <Image imgUrl={this.props.image} />
         <CaptionList captions={this.props.captions} />
-
       </div>
     )
   }
@@ -48,8 +47,8 @@ class ImageContainer extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    image: state.getImage.singleImage,
-    captions: state.getCaptions.captions || []
+    image: state.singleImage,
+    captions: state.captions
   }
 }
 

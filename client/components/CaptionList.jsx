@@ -1,6 +1,7 @@
 import React from 'react'
 import CaptionListItem from './CaptionListItem'
 
+<<<<<<< HEAD
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -18,6 +19,18 @@ function CaptionList (props) {
         )
       })}
 
+=======
+function CaptionList (props){
+  return (
+    <div className="caption-list">
+        {props.captions.map(((item, key) => {
+          return(
+            <div key={key}>
+              <CaptionListItem caption={item.caption_text} />
+            </div>
+          )
+        }))}
+>>>>>>> fcb52a01536675b3b465bc6074e0734417b1e6f8
     </div>
   )
 }
