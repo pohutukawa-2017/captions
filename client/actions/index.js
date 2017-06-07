@@ -8,10 +8,11 @@ export const getCaption = (caption) => {
   }
 }
 
-export const getImage = (url) => {
+export const getImage = (url, id) => {
   return {
     type: 'GET_IMAGE',
-    image: url
+    image: url,
+    id
   }
 }
 

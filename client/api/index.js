@@ -6,7 +6,7 @@ export function apiGetImageById (id, callback) {
     if (err) {
       callback(err.message)
     } else {
-      callback(null, res.body.result[0].path)
+      callback(null, res.body.result[0])
     }
   })
 }

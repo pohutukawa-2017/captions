@@ -23,7 +23,7 @@ class ImageContainer extends React.Component {
     const id = Number(this.props.match.params.id)
 	   apiGetImageById(id, (err, res) => {
      if (err) console.log(err)
-     this.props.dispatch(getImage(res))
+     this.props.dispatch(getImage(res.path, id))
    })
   }
 
@@ -35,19 +35,12 @@ class ImageContainer extends React.Component {
     })
   }
 
-<<<<<<< HEAD
   render () {
     return (
-      <div>
+      <div className='image-container'>
         <Image imgUrl={this.props.image} />
         <CaptionList captions={this.props.captions} />
-=======
-  render(){
-    return(
-      <div className='image-container'>
-				<Image imgUrl={this.props.image}/>
-				<CaptionList captions={this.props.captions}/>
->>>>>>> 714654b2491b1424610303b6e26b96a78679d892
+
       </div>
     )
   }

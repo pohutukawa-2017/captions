@@ -8,8 +8,8 @@ import ImageContainer from './ImageContainer'
 const App = () => (
   <Router>
     <div className='app'>
-      <Route path='/images/:id/:id' component={ImageCaption} />
-      <Route path='/images/:id' component={ImageContainer} />
+      <Route path='/images/:id/:captionid' component={ImageCaption} />
+      <Route exact path='/images/:id' component={ImageContainer} />
     </div>
   </Router>
 )

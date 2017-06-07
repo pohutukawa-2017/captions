@@ -5,23 +5,23 @@ class ImageCaption extends React.Component {
   constructor (props) {
     super(props)
   }
-
   render () {
-    console.log(this.props.image)
-    const id = this.props.match.params.id - 1
+    const id = Number(this.props.match.params.captionid)
+    const singleCap = this.props.captionsList.find((caption) => {
+      return caption.id === id
+    })
     return (
       <div className='image-caption'>
-        <img src={`${this.props.captionsList[2].image}`} />
-        <p>{this.props.captionsList[id].caption}</p>
+        <img src={this.props.image.singleImage} />
+        <p>{singleCap.caption_text}</p>
       </div>
     )
   }
 }
-
 function mapStateToProps (state) {
   return {
-    image: state.getImage.singleImage,
-    captionsList: state.captions.captions
+    image: state.getImage,
+    captionsList: state.getCaptions.captions
   }
 }
 
