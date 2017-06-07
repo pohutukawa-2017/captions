@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from './Navbar'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import Navbar from './Navbar'
 import ImageList from './ImageList'
 
 const App = () => {

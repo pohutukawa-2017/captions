@@ -5,6 +5,7 @@
   border-radius: 50%;
 }
 
+<<<<<<< HEAD
 button {
   width: 2rem;
   height: 2rem;
@@ -26,3 +27,27 @@ button {
 .image-thumbnail-container img {
   width:100%;
 }
+=======
+.image-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+}
+
+.caption-list {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+li {
+  list-style: none;
+}
+>>>>>>> fe59005ad4d262d7811def2125e57038b180a0ec

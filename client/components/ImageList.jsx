@@ -8,7 +8,7 @@ function ImageList (props) {
     return props.images.map((image, key) => {
       return (
         <div key={key} className='image-container'>
-          <ImageThumbnail id={image.id} img_url={image.image_url} />
+          <ImageThumbnail id={image.id} img_url={image.path} />
         </div>
       )
     })

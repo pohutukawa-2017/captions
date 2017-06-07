@@ -1,8 +1,23 @@
 module.exports = {
-  getImages: getImages
+  getImages,
+  getCaptionsById,
+  getImageById
 }
 
-function getImages (connection) {
-  return connection('images')
+function getImages (conn) {
+  return conn('images')
   .select()
+  .orderByRaw('id DESC')
+}
+
+function getCaptionsById (id, conn) {
+  return conn('captions')
+  .select()
+  .where('image_id', id)
+}
+
+function getImageById (id, conn) {
+  return conn('images')
+  .select()
+  .where('id', id)
 }
