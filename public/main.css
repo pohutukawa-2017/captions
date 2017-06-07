@@ -18,7 +18,11 @@ button {
   flex-wrap: wrap;
 }
 
-.image-thumbnail-container {
-  wdith: 20%;
+.image-container {
+  max-width: 20%;
   margin:10px;
+}
+
+.image-thumbnail-container img {
+  width:100%;
 }
