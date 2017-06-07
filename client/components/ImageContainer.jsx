@@ -35,11 +35,19 @@ class ImageContainer extends React.Component {
     })
   }
 
+<<<<<<< HEAD
   render () {
     return (
       <div>
         <Image imgUrl={this.props.image} />
         <CaptionList captions={this.props.captions} />
+=======
+  render(){
+    return(
+      <div className='image-container'>
+				<Image imgUrl={this.props.image}/>
+				<CaptionList captions={this.props.captions}/>
+>>>>>>> 714654b2491b1424610303b6e26b96a78679d892
       </div>
     )
   }

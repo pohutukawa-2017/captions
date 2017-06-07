@@ -1,5 +1,31 @@
+<<<<<<< HEAD
 .image-caption {
 	display:flex;
 	flex-direction: column;
 	align-items: center;
 }
+=======
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+display: flex;
+justify-content: center;
+}
+
+.caption-list {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+li {
+  list-style: none;
+}
+>>>>>>> 714654b2491b1424610303b6e26b96a78679d892
