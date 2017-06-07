@@ -4,3 +4,10 @@ export const getImage = (url) => {
     image: url
   }
 }
+
+export const getCaptions = (captions) => {
+  return {
+    type: 'GET_CAPTIONS',
+    captions
+  }
+}
