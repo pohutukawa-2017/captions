@@ -1,9 +1,18 @@
 import React from 'react'
+import Navbar from './Navbar'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-const App = () => (
-  <div className='app'>
-  <h1>Hello World</h1>
-  </div>
-)
+import ImageList from './ImageList'
+
+const App = () => {
+  return (
+    <Router>
+      <div className='app'>
+        <Navbar />
+        <Route exact path='/' component={ImageList} />
+      </div>
+    </Router>
+  )
+}
 
 export default App
