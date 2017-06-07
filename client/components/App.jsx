@@ -1,11 +1,14 @@
 import React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import ImageContainer from './ImageContainer'
 
 const App = () => (
   <Router>
     <div className='app'>
-    <h1>Hello World</h1>
-    <Route path="/images/:id" component={CaptionList} />
+    <Link to ="/images/1"><h1>1</h1></Link>
+    <Link to ="/images/2"><h1>2</h1></Link>
+    <Link to ="/images/3"><h1>3</h1></Link>
+    <Route path="/images/:id" component={ImageContainer} />
     </div>
   </Router>
 )

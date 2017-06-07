@@ -6,4 +6,8 @@ const router = require('./routes')
 server.use(express.static(path.join(__dirname, '../public')))
 
 server.use('/', router)
-module.exports = server
+
+module.exports = function (db) {
+  server.set('db', db)
+  return server
+ }
