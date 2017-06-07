@@ -4,7 +4,7 @@ const router = express.Router()
 router.use(bodyParser.json())
 
 const auth = require('./auth')
-const images = require('./images')
+const images = require('../controllers/images')
 
 router.post('/authenticate', auth.issueJwt)
 
