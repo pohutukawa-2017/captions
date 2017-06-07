@@ -15,3 +15,4 @@ module.exports = function (db) {
   server.set('db', db)
   return server
  }
+

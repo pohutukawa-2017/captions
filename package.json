@@ -4,12 +4,12 @@
   "description": "React Redux with simple async action",
   "main": "server/index",
   "scripts": {
-    "knex": "knex",
-    "dev": "nodemon --watch server & webpack --watch",
-    "test": "ava -v test/**/*.test.js",
+    "dev": "nodemon --watch server & webpack --config webpack.dev.config.js --watch",
+    "test": "ava -v -s test/**/*.test.js --fail-fast",
     "eslint": "eslint src test",
     "start": "node server",
-    "postinstall": "webpack"
+    "knex": "knex",
+    "postinstall": "webpack --config webpack.prod.config.js"
   },
   "keywords": [
     "react",
