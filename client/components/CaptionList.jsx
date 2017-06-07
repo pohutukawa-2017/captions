@@ -1,16 +1,20 @@
 import React from 'react'
+import CaptionListItem from './CaptionListItem'
 
 function CaptionList (props){
   console.log(props)
   return (
-    <div className="captionList">
-      <ul>
+    <div className="caption-list">
+    
         {props.captions.map(((item, key) => {
           return(
-            <li key={key}>{item.caption_text}</li>
+            <div>
+              <CaptionListItem caption={item.caption_text} />
+            </div>
+      
           )
         }))}
-      </ul>
+      
     </div>
   )
 }
