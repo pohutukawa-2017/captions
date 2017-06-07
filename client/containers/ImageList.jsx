@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ImageThumbnail from '../components/ImageThumbnail'
 import {connect} from 'react-redux'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class ImageList extends Component {
 
@@ -8,7 +9,7 @@ class ImageList extends Component {
     return this.props.images.map((image, key) => {
       return (
         <div key={key} className='image-container'>
-          <ImageThumbnail />
+          <Route path='/image/:id' component={ImageThumbnail} id={this.props.images.id} imgUrl={this.props.images.path} />
         </div>
       )
     })
@@ -16,9 +17,11 @@ class ImageList extends Component {
 
   render () {
     return (
-      <div className='listings-container'>
-        {this.createListImage()}
-      </div>
+      <Router>
+        <div className='listings-container'>
+          {this.createListImage()}
+        </div>
+      </Router>
     )
   }
 }

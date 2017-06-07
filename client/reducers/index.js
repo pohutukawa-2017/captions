@@ -1,16 +1,6 @@
 import {combineReducers} from 'redux'
-
-<<<<<<< HEAD
-import words from './words'
+import image from './image'
 
 export default combineReducers({
-  words
+  image
 })
-
-=======
-import initial from './initial'
-
-export default combineReducers({
-  initial
-})
->>>>>>> ffa17e135c9c90da1fb4afe03b10ff3c1afd8bd3
