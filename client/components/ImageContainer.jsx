@@ -7,49 +7,49 @@ import {getImage, getCaptions} from '../actions/'
 import CaptionList from './CaptionList'
 import Image from './Image'
 
-class ImageContainer extends React.Component{
-	constructor(props){
-		super(props)
-		this.getImagePath = this.getImagePath.bind(this)
+class ImageContainer extends React.Component {
+  constructor (props) {
+    super(props)
+    this.getImagePath = this.getImagePath.bind(this)
     this.getCaptionsList = this.getCaptionsList.bind(this)
-	}
+  }
 
-  componentDidMount(){
+  componentDidMount () {
     this.getImagePath()
     this.getCaptionsList()
   }
 
-	getImagePath(){
-		const id = Number(this.props.match.params.id)
-	   apiGetImageById(id, (err, res) => {
-			if (err) console.log(err)
-			this.props.dispatch(getImage(res))
-		})
-	}
-
-  getCaptionsList(){
+  getImagePath () {
     const id = Number(this.props.match.params.id)
-    apiGetCaptionsById(id, (err, res)=> {
+	   apiGetImageById(id, (err, res) => {
+     if (err) console.log(err)
+     this.props.dispatch(getImage(res))
+   })
+  }
+
+  getCaptionsList () {
+    const id = Number(this.props.match.params.id)
+    apiGetCaptionsById(id, (err, res) => {
       if (err) console.log(err)
       this.props.dispatch(getCaptions(res))
     })
   }
 
-  render(){
-    return(
+  render () {
+    return (
       <div>
-				<Image imgUrl={this.props.image}/>
-				<CaptionList captions={this.props.captions}/>
+        <Image imgUrl={this.props.image} />
+        <CaptionList captions={this.props.captions} />
       </div>
     )
   }
 }
 
 function mapStateToProps (state) {
-	return {
-		image: state.getImage.singleImage,
+  return {
+    image: state.getImage.singleImage,
     captions: state.getCaptions.captions || []
-	}
+  }
 }
 
 export default connect(mapStateToProps)(ImageContainer)

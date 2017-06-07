@@ -7,7 +7,7 @@ class ImageCaption extends React.Component {
   }
 
   render () {
-    console.log(this.props.captionsList[2].image)
+    console.log(this.props.image)
     const id = this.props.match.params.id - 1
     return (
       <div className='image-caption'>
@@ -20,7 +20,7 @@ class ImageCaption extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    image: state.image,
+    image: state.getImage.singleImage,
     captionsList: state.captions.captions
   }
 }
