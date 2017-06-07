@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getImageById, getCaptionsById} from '../api'
 import {imagePath, captions} from '../actions/'
-
+import {Route} from 'react-router-dom'
 import CaptionList from './CaptionList'
 import Image from './Image'
 
@@ -38,7 +38,7 @@ class ImageContainer extends React.Component {
     return (
       <div className='image-container'>
         <Image imgUrl={this.props.image} />
-        <CaptionList captions={this.props.captions} />
+        <CaptionList captions={this.props.captions} routerProps={this.props}/>
       </div>
     )
   }

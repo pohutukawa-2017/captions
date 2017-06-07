@@ -17,8 +17,15 @@ export function getCaptionsById (id, callback) {
     if (err) {
       callback(err)
     } else {
-      console.log(res.body.result)
       callback(null, res.body.result)
     }
+  })
+}
+
+export function postNewCaption (imageId, text, cb) {
+  request.post(`/api/v1/captions/${imageId}`)
+  .send(text)
+  .end((err, res) => {
+    cb(err, res.body)
   })
 }
