@@ -4,4 +4,7 @@ var server = express()
 
 server.use(express.static(path.join(__dirname, '../public')))
 
-module.exports = server
+module.exports = function (db) {
+  server.set('db', db)
+  return server
+}
