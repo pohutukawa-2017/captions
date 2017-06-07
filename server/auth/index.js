@@ -24,9 +24,9 @@ function createToken (user, secret) {
   })
 }
 
-function verify (user, res, callback) {
-  const username = user.username
-  const password = user.password
+function verify (req, res, callback) {
+  const username = req.body.username
+  const password = req.body.password
   db.getUserByName(username, connection)
     .then(users => {
       if (users.length === 0) {
