@@ -1,13 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "boilerplate-react-redux",
-  "version": "0.1.0",
-  "description": "React Redux using express",
-  "main": "server/index.js",
-  "scripts": {
-    "start": "nodemon --watch server server/index & webpack --watch",
-    "watch": "nodemon -e js,jsx -x npm test"
-=======
   "name": "captions",
   "version": "0.1.0",
   "description": "React Redux with simple async action",
@@ -18,7 +9,6 @@
     "eslint": "eslint src test",
     "start": "node server",
     "postinstall": "webpack"
->>>>>>> ffa17e135c9c90da1fb4afe03b10ff3c1afd8bd3
   },
   "keywords": [
     "react",
@@ -26,21 +16,6 @@
   ],
   "author": "EDA",
   "license": "ISC",
-<<<<<<< HEAD
-  "devDependencies": {
-    "babel-core": "^6.13.2",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "nodemon": "^1.11.0",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
-    "react-redux": "^4.4.5",
-    "react-router-dom": "^4.1.1",
-    "redux": "^3.5.2",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
-=======
   "dependencies": {
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
@@ -66,22 +41,13 @@
   "ava": {
     "require": "babel-register",
     "babel": "inherit"
->>>>>>> ffa17e135c9c90da1fb4afe03b10ff3c1afd8bd3
   },
   "babel": {
-    "presets": [
-      "es2015",
-<<<<<<< HEAD
-      "react"
-    ]
-  },
-  "dependencies": {
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2"
-=======
-      "react",
-      "stage-0"
-    ]
+     "presets": [
+       "es2015",
+       "react",
+       "stage-0"
+     ]
   },
   "devDependencies": {
     "ava": "^0.19.1",
@@ -91,6 +57,5 @@
     "supertest": "^3.0.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-livereload-plugin": "^0.11.0"
->>>>>>> ffa17e135c9c90da1fb4afe03b10ff3c1afd8bd3
   }
 }
