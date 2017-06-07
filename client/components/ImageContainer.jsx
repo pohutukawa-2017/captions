@@ -47,7 +47,7 @@ class ImageContainer extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    image: state.singleImage,
+    image: state.singleImage.path,
     captions: state.captions
   }
 }

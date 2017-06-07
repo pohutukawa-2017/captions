@@ -6,13 +6,14 @@ class ImageCaption extends React.Component {
     super(props)
   }
   render () {
+    console.log(this.props.image)
     const id = Number(this.props.match.params.captionid)
     const singleCap = this.props.captionsList.find((caption) => {
       return caption.id === id
     })
     return (
       <div className='image-caption'>
-        <img src={this.props.image.singleImage} />
+        <img src={this.props.image.path} />
         <p>{singleCap.caption_text}</p>
       </div>
     )
@@ -20,7 +21,7 @@ class ImageCaption extends React.Component {
 }
 function mapStateToProps (state) {
   return {
-    image: state.getImage,
+    image: state.singleImage,
     captionsList: state.captions
   }
 }

@@ -6,7 +6,7 @@ export function getImageById (id, callback) {
     if (err) {
       callback(err)
     } else {
-      callback(null, res.body.result[0].path)
+      callback(null, res.body.result[0])
     }
   })
 }
