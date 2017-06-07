@@ -5,6 +5,8 @@ import {imagePath, captions} from '../actions/'
 
 import CaptionList from './CaptionList'
 import Image from './Image'
+import PreviousImage from './PreviousImage'
+import NextImage from './NextImage'
 
 class ImageContainer extends React.Component {
   constructor (props) {
@@ -37,7 +39,9 @@ class ImageContainer extends React.Component {
   render () {
     return (
       <div className='image-container'>
+        <PreviousImage />
         <Image imgUrl={this.props.image} />
+        <NextImage />
         <CaptionList captions={this.props.captions} />
       </div>
     )

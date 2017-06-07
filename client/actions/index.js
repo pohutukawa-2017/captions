@@ -11,3 +11,10 @@ export const captions = (captions) => {
     captions
   }
 }
+
+export const getNextImage = (id) => {
+  return {
+    type: 'GET_NEXT_IMAGE',
+    id
+  }
+}
