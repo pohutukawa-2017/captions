@@ -31,18 +31,18 @@ function loginError (message) {
   }
 }
 
-export function loginUser (loginInfo) {
+export function loginUser (loginInfo, redirect) {
   return dispatch => {
     dispatch(requestLogin(loginInfo))
     return request('post', '/authenticate', loginInfo)
       .then(response => {
-        if (!response.ok) {
-          dispatch(loginError(response.body.message))
+        if (!response.body.token) {
+          dispatch(loginError(response.body.info))
           return // Promise.reject(response.body.message)
         } else {
           const userInfo = saveUserToken(response.body.token)
           dispatch(receiveLogin(userInfo))
-          console.log('token saved to local storage')
+          redirect()
         }
       })
       .catch(err => dispatch(loginError(err.response.body.message)))

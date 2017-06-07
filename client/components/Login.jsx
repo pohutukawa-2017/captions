@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {loginUser} from '../actions'
+import ErrorMessage from './ErrorMessage'
 
 class Login extends React.Component {
   constructor (props) {
@@ -12,6 +13,7 @@ class Login extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.redirectToHomepage = this.redirectToHomepage.bind(this)
   }
 
   handleChange (e) {
@@ -25,7 +27,11 @@ class Login extends React.Component {
       username: this.state.username.trim(),
       password: this.state.password.trim()
     }
-    this.props.loginUser(loginInfo)
+    this.props.loginUser(loginInfo, this.redirectToHomepage)
+  }
+
+  redirectToHomepage () {
+    this.props.history.push('/')
   }
 
   render () {
@@ -34,6 +40,7 @@ class Login extends React.Component {
         <input name='username' onChange={this.handleChange} placeholder='Username' />
         <input type='password' name='password' onChange={this.handleChange} placeholder='Password' />
         <button onClick={this.handleClick}>Login</button>
+        <ErrorMessage />
       </div>
     )
   }
@@ -41,7 +48,7 @@ class Login extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    loginUser: loginInfo => dispatch(loginUser(loginInfo))
+    loginUser: (loginInfo, redirect) => dispatch(loginUser(loginInfo, redirect))
   }
 }
 

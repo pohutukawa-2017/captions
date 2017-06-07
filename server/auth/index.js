@@ -8,7 +8,6 @@ const crypto = require('./crypto')
 
 function issueJwt (user, res) {
   const token = createToken(user, process.env.JWT_SECRET || 'this is our awesome secret')
-  console.log('token', token)
   res.json({
     message: 'Authentication successful.',
     token
@@ -30,7 +29,7 @@ function verify (req, res, callback) {
   db.getUserByName(username, connection)
     .then(users => {
       if (users.length === 0) {
-        return res.status(403).json({
+        return res.json({
           message: 'Authentication failed',
           info: 'Unrecognised user.'
         })
@@ -38,18 +37,17 @@ function verify (req, res, callback) {
 
       const user = users[0]
       if (!crypto.verifyUser(user, password)) {
-        console.log('password was incorrect')
-        return res.status(403).json({
+        return res.json({
           message: 'Authentication failed',
           info: 'Incorrect password.'
         })
       }
       callback(user, res)
     })
-  .catch(err => {
-    return res.status(500).json({
+  .catch(() => {
+    return res.json({
       message: 'Authentication failed due to a server error.',
-      info: err.message
+      info: 'Unable to retrieve user from database'
     })
   })
 }
