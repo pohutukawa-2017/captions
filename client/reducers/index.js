@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
 
 import initial from './initial'
-import confirmUpload from './confirmUpload'
+import imageUpload from './imageUpload'
 
 export default combineReducers({
   initial,
-  confirmUpload
+  imageUpload
 })

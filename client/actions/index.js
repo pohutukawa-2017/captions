@@ -2,21 +2,31 @@ import request from 'superagent'
 
 export const UPLOAD_CONFIRMED = 'UPLOAD_CONFIRMED'
 
-export function storePicture (pictureURL) {
+export function postImage (pictureURL) {
   return (dispatch) => {
     request
-      .post(/*the database*/)
-      .send(pictureURL)
+      .post('/api/v1/images')
+      .send({path: pictureURL})
       .end((err, res) => {
         // To do: handle error
-        dispatch(uploadConfirmed(res.body))
+        dispatch(receivedImageId(res.body.id))
       })
   }
 }
 
-export function uploadConfirmed (response) {
+export function receivedImageId (id) {
   return {
-    type: UPLOAD_CONFIRMED,
-    response: response
+    type: RECEIVED_IMAGE_ID,
+    id
+  }
+}
+
+export function uploadImage () {
+  return function (dispatch) {
+    cloudinary.openUploadWidget({cloud_name: 'dboovyrqb', upload_preset: 'p8w4fgph', tags: ['test']},
+      (error, result) => {
+        dispatch(postImage(result[0].url))
+        // Todo handle error
+      })
   }
 }
