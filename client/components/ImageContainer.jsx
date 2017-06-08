@@ -1,44 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getImageById, getCaptionsById} from '../api'
-import {imagePath, captions} from '../actions/'
-
+import {getImagePath, getCaptionsList} from '../actions/'
 import CaptionList from './CaptionList'
 import Image from './Image'
 
 class ImageContainer extends React.Component {
-  constructor (props) {
-    super(props)
-    this.getImagePath = this.getImagePath.bind(this)
-    this.getCaptionsList = this.getCaptionsList.bind(this)
-  }
-
   componentDidMount () {
-    this.getImagePath()
-    this.getCaptionsList()
-  }
-
-  getImagePath () {
-    const id = Number(this.props.match.params.id)
-    getImageById(id, (err, res) => {
-      if (err) return console.log(err) //TODO: Error component
-      this.props.dispatch(imagePath(res))
-    })
-  }
-
-  getCaptionsList () {
-    const id = Number(this.props.match.params.id)
-    getCaptionsById(id, (err, res) => {
-      if (err) return console.log(err) //TODO: Error component
-      this.props.dispatch(captions(res))
-    })
+    const imageId = this.props.match.params.id
+    this.props.getImagePath(imageId)
+    this.props.getCaptionsList(imageId)
   }
 
   render () {
     return (
       <div className='image-container'>
         <Image imgUrl={this.props.image} />
-        <CaptionList captions={this.props.captions} />
+        <CaptionList captions={this.props.captions} routerProps={this.props}/>
       </div>
     )
   }
@@ -46,9 +23,20 @@ class ImageContainer extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    image: state.singleImage,
+    image: state.singleImage.path,
     captions: state.captions
   }
 }
 
-export default connect(mapStateToProps)(ImageContainer)
+function mapDispatchToProps (dispatch) {
+  return {
+    getImagePath: (id) => {
+      dispatch(getImagePath(id))
+    },
+    getCaptionsList: (id) => {
+      dispatch(getCaptionsList(id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageContainer)

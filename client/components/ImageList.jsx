@@ -1,17 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {fetchImages} from '../actions'
 import ImageThumbnail from './ImageThumbnail'
 
-
-function ImageList (props) {
+class ImageList extends React.Component {
   componentDidMount () {
-    props.fetchImages()
+    this.props.fetchImages()
   }
 
-  return (
+  render () {
+    return (
     <div className='listings-container'>
-      {props.images.map((image) => {
+      {this.props.images.map((image) => {
         return (
           <div key={image.id}>
             <ImageThumbnail id={image.id} imgUrl={image.path} />
@@ -19,21 +20,15 @@ function ImageList (props) {
         )
       })}
     </div>
-  )
+    )
+  }
 }
 
-function fetchImages () {
-  return (dispatch) => {
-    dispatch(requestImages())
-    request
-     .get('/api/v1/images')
-     .end((err, res) => {
-       if (err) {
-         dispatch(showError(err.message))
-         return
-       }
-       dispatch(receiveImages(res.body))
-     })
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchImages: () => {
+      dispatch(fetchImages())
+    }
   }
 }
 
@@ -43,4 +38,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(ImageList)
+export default connect(mapStateToProps, mapDispatchToProps)(ImageList)

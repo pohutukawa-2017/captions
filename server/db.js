@@ -1,7 +1,8 @@
 module.exports = {
   getImages,
   getCaptionsById,
-  getImageById
+  getImageById,
+  postNewCaption
 }
 
 function getImages (conn) {
@@ -12,7 +13,7 @@ function getImages (conn) {
 
 function getCaptionsById (id, conn) {
   return conn('captions')
-  .select()
+  .select(`id`, 'image_id as imageId', 'caption_text as captionText')
   .where('image_id', id)
 }
 
@@ -20,4 +21,12 @@ function getImageById (id, conn) {
   return conn('images')
   .select()
   .where('id', id)
+}
+
+function postNewCaption (text, imageId, conn) {
+  return conn('captions')
+  .insert({
+    image_id: imageId,
+    caption_text: text
+  })
 }
