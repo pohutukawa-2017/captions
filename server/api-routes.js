@@ -39,6 +39,17 @@ router.post('/captions/:imageId', (req, res) => {
   })
 })
 
+router.delete('/captions/:id', (req, res) => {
+  const connection = req.app.get('db')
+  const id = Number(req.params.id)
+  db.removeCaption(id, connection)
+  .then(() => {
+    res.json({
+      id: Number(req.params.id)
+    })
+  })
+})
+
 router.post('/authenticate', (req, res) => {
   auth.verify(req, res, auth.issueJwt)
 })
