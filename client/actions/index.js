@@ -14,7 +14,6 @@ export const captions = (captions) => {
   }
 }
 
-
 export const saveNewCaption = (caption, cb) => {
   return (dispatch) => {
     postNewCaption(caption.imageId, {text: caption.text}, (err, res) => {

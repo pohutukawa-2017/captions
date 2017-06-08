@@ -39,4 +39,3 @@ class AddCaption extends React.Component{
 }
 
 export default connect()(AddCaption)
-
