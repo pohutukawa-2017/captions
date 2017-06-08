@@ -31,7 +31,7 @@ class AddCaption extends React.Component{
     return(
       <div className="add-caption">
         <form onSubmit={this.handleSubmit}>
-          <input type="text-area" name="text" placeholder="Insert Caption" onChange={this.handleChange}/>
+          <textarea name="text" className="text-box" placeholder="Insert Caption" onChange={this.handleChange}/><br/>
           <button type="submit">Submit</button>
         </form>
       </div>

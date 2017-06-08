@@ -19,7 +19,7 @@ class AddCaptionContainer extends React.Component {
   render() {
     return (
       <div className="add-caption-container">
-        <img src={this.props.image} className="image"/>
+        <img src={this.props.image} className="image-add-caption"/>
         <AddCaption routerProps={this.props}/>
       </div>
     )
