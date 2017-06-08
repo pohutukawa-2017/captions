@@ -26,7 +26,6 @@ class AddCaption extends React.Component {
     }))
   }
 
-
   render () {
     return (
       <div className="add-caption">
