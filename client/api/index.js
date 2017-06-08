@@ -21,3 +21,11 @@ export function getCaptionsById (id, callback) {
     }
   })
 }
+
+export function postNewCaption (imageId, text, cb) {
+  request.post(`/api/v1/captions/${imageId}`)
+  .send(text)
+  .end((err, res) => {
+    cb(err, res.body)
+  })
+}
