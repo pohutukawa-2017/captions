@@ -34,8 +34,9 @@ function addUser (user, connection) {
 
 function getUser (userId, connection) {
   return connection('users')
-    .select()
-    .where('id', userId)
+    .join('images', 'users.id', 'images.user_id')
+    .where('users.id', userId)
+    .select('users.username', 'users.profile_pic', 'images.*')
 }
 
 function getCaptionsById (id, conn) {

@@ -62,16 +62,15 @@ router.get('/profile/:id', (req, res) => {
   const connection = req.app.get('db')
   const id = Number(req.params.id)
   db.getUser(id, connection)
-    .then((users) => {
+    .then((results) => {
       const result = {
-        username: users[0].username,
-        profilePic: users[0].profile_pic
-      }
-      db.getImagesByUser(id, connection)
-        .then((images) => {
-          result.images = images
-          res.json(result)
+        username: results[0].username,
+        profilePic: results[0].profile_pic,
+        images: results.map(image => {
+          return {id: image.id, path: image.path}
         })
+      }
+      res.json(result)
     })
 })
 

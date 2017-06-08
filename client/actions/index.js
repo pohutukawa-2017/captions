@@ -1,4 +1,4 @@
-import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, consume} from '../api'
+import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, login} from '../api'
 import {saveUserToken} from '../auth'
 
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
@@ -88,10 +88,10 @@ export function profileError (message) {
   }
 }
 
-export function loginUser (loginInfo, route, redirect) {
+export function loginUser (credentials, route, redirect) {
   return (dispatch) => {
     dispatch(requestLogin())
-    return consume('post', route, loginInfo)
+    return login('post', route, credentials)
       .then((response) => {
         if (!response.body.token) {
           return dispatch(loginError(response.body.info))
@@ -108,7 +108,7 @@ export function loginUser (loginInfo, route, redirect) {
 export function getProfile (profileId, route, callback) {
   return (dispatch) => {
     dispatch(requestProfile())
-    return consume('get', route)
+    return login('get', route)
       .then((response) => {
         dispatch(receiveProfile(response.body))
       })

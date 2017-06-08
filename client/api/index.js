@@ -6,7 +6,7 @@ const baseUrl = '/api/v1'
 export const registerUrl = '/register'
 export const loginUrl = '/authenticate'
 
-export function consume (method = 'get', endpoint, data = {}) {
+export function login (method = 'get', endpoint, data = {}) {
   const dataMethod = method.toLowerCase() === 'get' && 'query' || 'send'
   const token = get('token')
   const headers = {

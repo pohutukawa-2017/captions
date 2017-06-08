@@ -6,12 +6,10 @@ import {getProfile} from '../actions'
 import ErrorMessage from './ErrorMessage'
 
 class ProfilePage extends React.Component {
-  constructor (props) {
-    super(props)
-  }
   componentDidMount () {
-    if (this.props.profile.id !== Number(this.props.match.params.id)) {
-      this.props.getProfile(Number(this.props.match.params.id), `/profile/${this.props.match.params.id}`)
+    const userId = Number(this.props.match.params.id)
+    if (this.props.profile.id !== userId) {
+      this.props.getProfile(userId, `/profile/${userId}`)
     }
   }
 
