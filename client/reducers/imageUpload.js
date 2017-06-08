@@ -5,9 +5,6 @@ function imageUpload (state = {id: null, path: ''}, action) {
     case RECEIVED_IMAGE_ID:
       return {...state, id: action.id}
 
-    case RECEIVED_IMAGE_PATH:
-      return {...state, path: action.path}
-
     default:
       return state
   }

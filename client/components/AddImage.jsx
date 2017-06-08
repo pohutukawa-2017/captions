@@ -1,13 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router'
 import {uploadImage} from '../actions'
 
 class AddImage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      uploadDone: false
+    }
+  }
+  componentWillReceiveProps () {
+    this.setState({
+      uploadDone: true
+    })
+  }
 
   render () {
+    // if (this.props.imageUpload.id === true) {console.log(this.props.imageUpload.id)}
     return (
       <div>
-        <img src={this.state.addedImage} />
+        {this.state.uploadDone && (<Redirect to={`/images/${this.props.addedImage.id}`} />)}
         <button onClick={this.props.uploadImage} className='upload-button'>
             Add Image
         </button>
@@ -26,8 +39,8 @@ function mapDispatchToProps (dispatch) {
 
 function mapStateToProps (state) {
   return {
-
+    addedImage: state.imageUpload
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddImage)
+export default connect(mapStateToProps, mapDispatchToProps)(AddImage)
