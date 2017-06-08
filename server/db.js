@@ -2,7 +2,8 @@ module.exports = {
   getUsers,
   getUserByName,
   getCaptionsById,
-  getImageById
+  getImageById,
+  addUser
 }
 
 function getUsers (connection) {
@@ -13,6 +14,12 @@ function getUserByName (username, connection) {
   return connection('users')
     .select()
     .where('username', username)
+}
+
+function addUser (user, connection) {
+  console
+  return connection('users')
+    .insert(user)
 }
 
 function getCaptionsById (id, conn) {

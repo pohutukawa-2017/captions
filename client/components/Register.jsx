@@ -1,15 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {loginUser} from '../actions'
+import {loginUser, loginError} from '../actions'
 import ErrorMessage from './ErrorMessage'
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      confirm: '',
+      profilePic: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -23,11 +25,15 @@ class Login extends React.Component {
   }
 
   handleClick () {
-    const loginInfo = {
-      username: this.state.username.trim(),
-      password: this.state.password.trim()
+    if (this.state.password.trim() !== this.state.confirm) {
+      return this.props.loginError('Passwords do not match!')
     }
-    this.props.loginUser(loginInfo, '/authenticate', this.redirectToHomepage)
+    const userInfo = {
+      username: this.state.username.trim(),
+      password: this.state.password.trim(),
+      profilePic: this.state.profilePic.trim()
+    }
+    this.props.loginUser(userInfo, '/register', this.redirectToHomepage)
   }
 
   redirectToHomepage () {
@@ -38,10 +44,12 @@ class Login extends React.Component {
     return (
       <div className='login-page'>
         <div>
-          <h2>Login</h2>
+          <h2>Register an Account</h2>
           <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
           <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
-          <p><button onClick={this.handleClick}>Login</button></p>
+          <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
+          <p><input name='profilePic' onChange={this.handleChange} placeholder='Profile Pic Url' /></p>
+          <p><button onClick={this.handleClick}>Register</button></p>
           <div className='error-message'>
             <ErrorMessage />
           </div>
@@ -53,8 +61,9 @@ class Login extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    loginUser: (loginInfo, route, redirect) => dispatch(loginUser(loginInfo, route, redirect))
+    loginUser: (userInfo, route, redirect) => dispatch(loginUser(userInfo, route, redirect)),
+    loginError: message => dispatch(loginError(message))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Register)

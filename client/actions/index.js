@@ -4,6 +4,8 @@ import {saveUserToken} from '../auth'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const REGISTER_ERROR = 'REGISTER_ERROR'
+export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 
 function requestLogin () {
   return {
@@ -22,7 +24,7 @@ function receiveLogin (user) {
   }
 }
 
-function loginError (message) {
+export function loginError (message) {
   return {
     type: LOGIN_FAILURE,
     isFetching: false,
@@ -31,10 +33,10 @@ function loginError (message) {
   }
 }
 
-export function loginUser (loginInfo, redirect) {
+export function loginUser (loginInfo, route, redirect) {
   return dispatch => {
-    dispatch(requestLogin(loginInfo))
-    return request('post', '/authenticate', loginInfo)
+    dispatch(requestLogin())
+    return request('post', route, loginInfo)
       .then(response => {
         if (!response.body.token) {
           dispatch(loginError(response.body.info))

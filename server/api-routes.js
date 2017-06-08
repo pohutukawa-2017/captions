@@ -27,4 +27,8 @@ router.post('/authenticate', (req, res) => {
   auth.verify(req, res, auth.issueJwt)
 })
 
+router.post('/register', (req, res) => {
+  auth.register(req, res, auth.issueJwt)
+})
+
 module.exports = router

@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_ERROR } from '../actions'
 import { isAuthenticated, getUserTokenInfo } from '../auth'
 
 const initialState = {
@@ -26,6 +26,10 @@ export default function auth (state = initialState, action) {
       return {
         isFetching: false,
         isAuthenticated: false,
+        errorMessage: action.message
+      }
+    case REGISTER_ERROR:
+      return {
         errorMessage: action.message
       }
     default:
