@@ -6,7 +6,7 @@ export function getImageById (id, callback) {
     if (err) {
       callback(err)
     } else {
-      callback(null, res.body.result[0].path)
+      callback(null, res.body.result[0])
     }
   })
 }
@@ -17,7 +17,6 @@ export function getCaptionsById (id, callback) {
     if (err) {
       callback(err)
     } else {
-      console.log(res.body.result)
       callback(null, res.body.result)
     }
   })
