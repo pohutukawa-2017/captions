@@ -9,7 +9,7 @@
     "eslint": "eslint src test",
     "start": "node server",
     "knex": "knex",
-    "postinstall": "webpack --config webpack.prod.config.js"
+    "postinstall": "knex migrate:latest && webpack --config webpack.prod.config.js"
   },
   "keywords": [
     "react",
