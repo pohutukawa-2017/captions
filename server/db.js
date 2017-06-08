@@ -4,8 +4,9 @@ module.exports = {
   getUserByName,
   getCaptionsById,
   getImageById,
-  addUser,
-  postNewCaption
+  postNewCaption,
+  removeCaption,
+  addUser
 }
 
 function getImages (conn) {
@@ -47,4 +48,10 @@ function postNewCaption (text, imageId, conn) {
     image_id: imageId,
     caption_text: text
   })
+}
+
+function removeCaption (captionId, conn) {
+  return conn('captions')
+  .where('id', captionId)
+  .del()
 }
