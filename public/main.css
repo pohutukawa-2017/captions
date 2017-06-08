@@ -10,13 +10,20 @@ button {
   height: 2rem;
   border-radius: 50%;
 }
-
-ul.menu {
-  display:inline-block;
+.navbar-container .site-name, .navbar-container .site-menu {
+  width:50%;
+  float:left;
+}
+navbar-container .site-menu {
+  text-align:right;
 }
 
+ul.menu {
+  text-align:right;
+}
 ul.menu li {
   margin:10px;
+  display:inline-block;
 }
 
 .listings-container {
@@ -26,7 +33,7 @@ ul.menu li {
   flex-wrap: wrap;
 }
 
-.image-thumbnail-container {
+.image-wrapper {
   max-width: 20%;
   margin:10px;
 }
