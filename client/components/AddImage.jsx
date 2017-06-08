@@ -17,7 +17,6 @@ class AddImage extends React.Component {
   }
 
   render () {
-    // if (this.props.imageUpload.id === true) {console.log(this.props.imageUpload.id)}
     return (
       <div>
         {this.state.uploadDone && (<Redirect to={`/images/${this.props.addedImage.id}`} />)}

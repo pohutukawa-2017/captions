@@ -6,6 +6,7 @@ module.exports = {
   getImageById,
   postNewCaption,
   postImage,
+  removeCaption,
   addUser
 }
 
@@ -55,4 +56,10 @@ function postImage (path, conn) {
   .insert({
     path: path
   })
+}
+
+function removeCaption (captionId, conn) {
+  return conn('captions')
+  .where('id', captionId)
+  .del()
 }

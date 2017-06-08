@@ -12,7 +12,6 @@ button {
 }
 .navbar-container .site-name, .navbar-container .site-menu {
   width:50%;
-  float:left;
 }
 navbar-container .site-menu {
   text-align:right;

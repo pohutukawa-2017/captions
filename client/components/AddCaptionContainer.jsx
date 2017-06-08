@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {getImageById} from '../api'
 import {imagePath} from '../actions'
 import AddCaption from './AddCaption'
-import Image from './Image'
 
 class AddCaptionContainer extends React.Component {
 

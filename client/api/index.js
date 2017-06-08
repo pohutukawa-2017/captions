@@ -78,3 +78,14 @@ export function postNewCaption (imageId, text, cb) {
     cb(err, res.body)
   })
 }
+
+export function removeCaption (captionId, callback) {
+  request.delete(`/api/v1/captions/${captionId}`)
+  .end((err, res) => {
+    if (err) {
+      callback(err)
+    } else {
+      callback(null, res.body.id)
+    }
+  })
+}
