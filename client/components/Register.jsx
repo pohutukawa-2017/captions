@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Dropzone from 'react-dropzone'
 
 import {loginUser, loginError} from '../actions'
 import ErrorMessage from './ErrorMessage'
-import {registerUrl} from '../api'
+import {registerUrl, handleImageUpload} from '../api'
 
 class Register extends React.Component {
   constructor (props) {
@@ -17,6 +18,7 @@ class Register extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.redirectToHomepage = this.redirectToHomepage.bind(this)
+    this.onImageDrop = this.onImageDrop.bind(this)
   }
 
   handleChange (e) {
@@ -41,6 +43,16 @@ class Register extends React.Component {
     this.props.history.push('/')
   }
 
+  onImageDrop (files) {
+    this.setState({
+      uploadedFile: files[0]
+    })
+    handleImageUpload(files[0], (err, res) => {
+      if (err) return console.log(err) // TODO: handle error
+      this.setState(res)
+    })
+  }
+
   render () {
     return (
       <div className='login-page'>
@@ -49,13 +61,22 @@ class Register extends React.Component {
           <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
           <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
           <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
-          <p><input name='profilePic' onChange={this.handleChange} placeholder='Profile Pic Url' /></p>
-          <p><button onClick={this.handleClick}>Register</button></p>
-          <div className='error-message'>
-            <ErrorMessage />
+          <Dropzone
+            multiple={false}
+            accept="image/*"
+            onDrop={this.onImageDrop.bind(this)}>
+            <p>Drop an image or click to select a file to upload.</p>
+            </Dropzone>
+            {this.state.profilePic &&
+              <div>
+                <h4>Upload Successful</h4>
+              </div>}
+              <p><button onClick={this.handleClick}>Register</button></p>
+            <div className='error-message'>
+              <ErrorMessage />
+            </div>
           </div>
         </div>
-      </div>
     )
   }
 }
