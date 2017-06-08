@@ -6,7 +6,7 @@ class AddCaption extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      //user_id: this.props.userId,
+      //user_id: this.props.userId, TODO: once login is completeed
       imageId: this.props.routerProps.match.params.id,
       text: ''
     }
@@ -31,7 +31,7 @@ class AddCaption extends React.Component{
     return(
       <div className="add-caption">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="text" placeholder="Insert Caption" onChange={this.handleChange}/>
+          <input type="text-area" name="text" placeholder="Insert Caption" onChange={this.handleChange}/>
           <button type="submit">Submit</button>
         </form>
       </div>
