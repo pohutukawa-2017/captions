@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+
 import {getImageById, getCaptionsById} from '../api'
 import {imagePath, captions} from '../actions/'
 
 import CaptionList from './CaptionList'
 import Image from './Image'
-import PreviousImage from './PreviousImage'
-import NextImage from './NextImage'
 
 class ImageContainer extends React.Component {
   constructor (props) {
@@ -39,9 +39,7 @@ class ImageContainer extends React.Component {
   render () {
     return (
       <div className='image-container'>
-        <PreviousImage />
         <Image imgUrl={this.props.image} />
-        <NextImage />
         <CaptionList captions={this.props.captions} />
       </div>
     )
@@ -55,4 +53,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(ImageContainer)
+export default withRouter(connect(mapStateToProps)(ImageContainer))
