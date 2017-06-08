@@ -40,15 +40,14 @@ export function loginUser (loginInfo, route, redirect) {
     return request('post', route, loginInfo)
       .then(response => {
         if (!response.body.token) {
-          dispatch(loginError(response.body.info))
-          return // Promise.reject(response.body.message)
+          return dispatch(loginError(response.body.info))
         } else {
           const userInfo = saveUserToken(response.body.token)
           dispatch(receiveLogin(userInfo))
           redirect()
         }
       })
-      .catch(err => dispatch(loginError(err.response.body.message)))
+      .catch(err => dispatch(loginError(err.response.body.info)))
   }
 }
 

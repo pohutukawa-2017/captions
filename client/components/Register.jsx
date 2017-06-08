@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {loginUser, loginError} from '../actions'
 import ErrorMessage from './ErrorMessage'
+import {registerUrl} from '../api'
 
 class Register extends React.Component {
   constructor (props) {
@@ -33,7 +34,7 @@ class Register extends React.Component {
       password: this.state.password.trim(),
       profilePic: this.state.profilePic.trim()
     }
-    this.props.loginUser(userInfo, '/register', this.redirectToHomepage)
+    this.props.loginUser(userInfo, registerUrl, this.redirectToHomepage)
   }
 
   redirectToHomepage () {

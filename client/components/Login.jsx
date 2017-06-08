@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {loginUser} from '../actions'
 import ErrorMessage from './ErrorMessage'
+import {loginUrl} from '../api'
 
 class Login extends React.Component {
   constructor (props) {
@@ -27,7 +28,7 @@ class Login extends React.Component {
       username: this.state.username.trim(),
       password: this.state.password.trim()
     }
-    this.props.loginUser(loginInfo, '/authenticate', this.redirectToHomepage)
+    this.props.loginUser(loginInfo, loginUrl, this.redirectToHomepage)
   }
 
   redirectToHomepage () {
@@ -37,7 +38,7 @@ class Login extends React.Component {
   render () {
     return (
       <div className='login-page'>
-        <div>
+        <div className='login-form'>
           <h2>Login</h2>
           <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
           <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>

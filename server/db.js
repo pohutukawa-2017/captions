@@ -17,7 +17,6 @@ function getUserByName (username, connection) {
 }
 
 function addUser (user, connection) {
-  console
   return connection('users')
     .insert(user)
 }

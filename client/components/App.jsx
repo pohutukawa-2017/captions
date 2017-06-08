@@ -1,8 +1,8 @@
 import React from 'react'
-import ImageCaption from './ImageCaption'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import ImageContainer from './ImageContainer'
 
+import ImageCaption from './ImageCaption'
+import ImageContainer from './ImageContainer'
 import Login from './Login'
 import Register from './Register'
 

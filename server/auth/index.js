@@ -30,7 +30,7 @@ function verify (req, res, callback) {
   db.getUserByName(username, connection)
     .then(users => {
       if (users.length === 0) {
-        return res.json({
+        return res.status(403).json({
           message: 'Authentication failed',
           info: 'Unrecognised user.'
         })
@@ -38,7 +38,7 @@ function verify (req, res, callback) {
 
       const user = users[0]
       if (!crypto.verifyUser(user, password)) {
-        return res.json({
+        return res.status(403).json({
           message: 'Authentication failed',
           info: 'Incorrect password.'
         })
@@ -46,7 +46,7 @@ function verify (req, res, callback) {
       callback(user, res)
     })
   .catch(() => {
-    return res.json({
+    return res.status(500).json({
       message: 'Authentication failed due to a server error.',
       info: 'Unable to retrieve user from database'
     })
@@ -54,17 +54,18 @@ function verify (req, res, callback) {
 }
 
 function register (req, res, callback) {
-  const user = {username: req.body.username, password: req.body.password, profile_pic: req.body.profilePic}
-  if (user.password.length < 8) {
-    return res.json({
+  if (req.body.password.length < 8) {
+    return res.status(403).json({
       message: 'Registration failed',
       info: 'Password cannot be less than eight characters.'
     })
   }
+  const passwordHash = crypto.getHash(req.body.password)
+  const user = {username: req.body.username, password_hash: passwordHash, profile_pic: req.body.profilePic}
   db.getUserByName(user.username, connection)
     .then(users => {
       if (users.length !== 0) {
-        return res.json({
+        return res.status(403).json({
           message: 'Registration failed',
           info: 'User already exists.'
         })
@@ -74,7 +75,7 @@ function register (req, res, callback) {
         .then(() => callback(user, res))
     })
     .catch(() => {
-      return res.json({
+      return res.status(500).json({
         message: 'Authentication failed due to a server error.',
         info: 'Unable to save user into database'
       })
