@@ -1,5 +1,5 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_ERROR } from '../actions'
-import { isAuthenticated, getUserTokenInfo } from '../auth'
+import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_ERROR} from '../actions'
+import {isAuthenticated, getUserTokenInfo} from '../auth'
 
 const initialState = {
   isFetching: false,

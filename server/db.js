@@ -1,4 +1,5 @@
 module.exports = {
+  getImages,
   getUsers,
   getUserByName,
   getCaptionsById,
@@ -6,6 +7,12 @@ module.exports = {
   postNewCaption,
   removeCaption,
   addUser
+}
+
+function getImages (conn) {
+  return conn('images')
+   .select()
+   .orderByRaw('id DESC')
 }
 
 function getUsers (connection) {

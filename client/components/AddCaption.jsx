@@ -3,7 +3,7 @@ import {saveNewCaption} from '../actions'
 import {connect} from 'react-redux'
 
 class AddCaption extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       imageId: this.props.routerProps.match.params.id,
@@ -21,12 +21,13 @@ class AddCaption extends React.Component {
 
   handleSubmit (evt) {
     evt.preventDefault()
-    this.props.dispatch(saveNewCaption(this.state, newCaptionId => {
+    this.props.dispatch(saveNewCaption(this.state, (newCaptionId) => {
       this.props.routerProps.history.push(`/images/${this.state.imageId}/${newCaptionId}`)
     }))
   }
 
-  render() {
+
+  render () {
     return (
       <div className="add-caption">
         <form onSubmit={this.handleSubmit}>
