@@ -2,8 +2,8 @@ import React from 'react'
 import {saveNewCaption} from '../actions'
 import {connect} from 'react-redux'
 
-class AddCaption extends React.Component{
-  constructor(props){
+class AddCaption extends React.Component {
+  constructor(props) {
     super(props)
     this.state = {
       imageId: this.props.routerProps.match.params.id,
@@ -26,8 +26,8 @@ class AddCaption extends React.Component{
     }))
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="add-caption">
         <form onSubmit={this.handleSubmit}>
           <textarea name="text" className="text-box" placeholder="Insert Caption" onChange={this.handleChange}/><br/>

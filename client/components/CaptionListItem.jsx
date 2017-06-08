@@ -1,10 +1,18 @@
+import {connect} from 'react-redux'
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {deleteCaption} from '../actions'
 
 function CaptionListItem (props) {
+  function handleClick (id) {
+    props.dispatch(deleteCaption(props.id, id))
+  }
   return (
-    <Link to={`/images/${props.imageId}/${props.id}`}><p>{props.caption}</p></Link>
+
+    <div>
+      <Link to={`/images/${props.imageId}/${props.id}`}><p>{props.caption}</p></Link><button onClick={() => handleClick(props.imageId)}>Delete</button>
+    </div>
   )
 }
 
-export default CaptionListItem
+export default connect()(CaptionListItem)

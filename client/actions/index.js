@@ -1,4 +1,4 @@
-import {getImageById, getCaptionsById, postNewCaption} from '../api'
+import {getImageById, getCaptionsById, postNewCaption, removeCaption} from '../api'
 
 export const imagePath = (image) => {
   return {
@@ -45,5 +45,17 @@ export const getCaptionsList = (id) => {
         dispatch(captions(res))
       })
     }
+  }
+}
+
+export const deleteCaption = (id, imageId) => {
+  return (dispatch) => {
+    removeCaption(id, (err, res) => {
+      if (err) return console.log(err)
+      getCaptionsById(imageId, (err, res) => {
+        if (err) return console.log(err) // TODO: Error component
+        dispatch(captions(res))
+      })
+    })
   }
 }

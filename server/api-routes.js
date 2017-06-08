@@ -29,4 +29,14 @@ router.post('/captions/:imageId', (req, res) => {
   })
 })
 
+router.delete('/captions/:id', (req, res) => {
+  const connection = req.app.get('db')
+  const id = Number(req.params.id)
+  console.log(id)
+  db.removeCaption(id, connection)
+  .then(f => f)
+  res.json({
+    id: Number(req.params.id)
+  })
+})
 module.exports = router
