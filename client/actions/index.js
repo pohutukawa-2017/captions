@@ -1,4 +1,4 @@
-import {getAllImages, getImageById, getCaptionsById, postNewCaption, request} from '../api'
+import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, request} from '../api'
 import {saveUserToken} from '../auth'
 
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
@@ -123,5 +123,17 @@ export const getCaptionsList = (id) => {
         dispatch(captions(res))
       })
     }
+  }
+}
+
+export const deleteCaption = (id, imageId) => {
+  return (dispatch) => {
+    removeCaption(id, (err, res) => {
+      if (err) return console.log(err)
+      getCaptionsById(imageId, (err, res) => {
+        if (err) return console.log(err) // TODO: Error component
+        dispatch(captions(res))
+      })
+    })
   }
 }
