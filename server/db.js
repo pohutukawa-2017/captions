@@ -1,7 +1,25 @@
 module.exports = {
+  getUsers,
+  getUserByName,
   getCaptionsById,
   getImageById,
+  addUser,
   postNewCaption
+}
+
+function getUsers (connection) {
+  return connection('users').select()
+}
+
+function getUserByName (username, connection) {
+  return connection('users')
+    .select()
+    .where('username', username)
+}
+
+function addUser (user, connection) {
+  return connection('users')
+    .insert(user)
 }
 
 function getCaptionsById (id, conn) {

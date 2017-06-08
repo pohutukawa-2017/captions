@@ -41,11 +41,21 @@
   height: auto;
 }
 
+li {
+  list-style: none;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+}
+
 .add-caption-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
 }
 
 .add-caption {
