@@ -77,15 +77,14 @@ export function removeCaption (captionId, callback) {
   })
 }
 
-export function handleImageUpload (file, callback) {
-  let upload = request
-    .post('https://api.cloudinary.com/v1_1/dboovyrqb/upload')
+export function uploadImage (file, callback) {
+  request.post('https://api.cloudinary.com/v1_1/dboovyrqb/upload')
     .field('upload_preset', 'p8w4fgph')
     .field('file', file)
-  upload.end((err, res) => {
-    if (err) callback(err)
-    else if (res.body.secure_url !== '') {
-      callback(null, {profilePic: res.body.secure_url})
-    }
-  })
+    .end((err, res) => {
+      if (err) callback(err)
+      else if (res.body.secure_url !== '') {
+        callback(null, res.body.secure_url)
+      }
+    })
 }

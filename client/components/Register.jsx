@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone'
 
 import {loginUser, loginError} from '../actions'
 import ErrorMessage from './ErrorMessage'
-import {registerUrl, handleImageUpload} from '../api'
+import {registerUrl, uploadImage} from '../api'
 
 class Register extends React.Component {
   constructor (props) {
@@ -13,12 +13,13 @@ class Register extends React.Component {
       username: '',
       password: '',
       confirm: '',
-      profilePic: ''
+      profilePic: '',
+      displayUpload: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.redirectToHomepage = this.redirectToHomepage.bind(this)
-    this.onImageDrop = this.onImageDrop.bind(this)
+    this.handleImageDrop = this.handleImageDrop.bind(this)
   }
 
   handleChange (e) {
@@ -43,13 +44,16 @@ class Register extends React.Component {
     this.props.history.push('/')
   }
 
-  onImageDrop (files) {
+  handleImageDrop (files) {
     this.setState({
       uploadedFile: files[0]
     })
-    handleImageUpload(files[0], (err, res) => {
+    uploadImage(files[0], (err, res) => {
       if (err) return console.log(err) // TODO: handle error
-      this.setState(res)
+      this.setState({
+        profilePic: res,
+        displayUpload: false
+      })
     })
   }
 
@@ -61,15 +65,16 @@ class Register extends React.Component {
           <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
           <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
           <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
-          <Dropzone
+          {this.state.displayUpload && <Dropzone
             multiple={false}
             accept="image/*"
-            onDrop={this.onImageDrop.bind(this)}>
+            onDrop={this.handleImageDrop}>
             <p>Drop an image or click to select a file to upload.</p>
-            </Dropzone>
+            </Dropzone>}
             {this.state.profilePic &&
               <div>
                 <h4>Upload Successful</h4>
+                <img src={this.state.profilePic} width="175" />
               </div>}
               <p><button onClick={this.handleClick}>Register</button></p>
             <div className='error-message'>
