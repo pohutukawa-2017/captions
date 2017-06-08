@@ -58,4 +58,21 @@ router.post('/register', (req, res) => {
   auth.register(req, res, auth.issueJwt)
 })
 
+router.get('/profile/:id', (req, res) => {
+  const connection = req.app.get('db')
+  const id = Number(req.params.id)
+  db.getUser(id, connection)
+    .then((users) => {
+      const result = {
+        username: users[0].username,
+        profilePic: users[0].profile_pic
+      }
+      db.getImagesByUser(id, connection)
+        .then((images) => {
+          result.images = images
+          res.json(result)
+        })
+    })
+})
+
 module.exports = router
