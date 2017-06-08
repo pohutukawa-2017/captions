@@ -3,7 +3,8 @@ module.exports = {
   getUserByName,
   getCaptionsById,
   getImageById,
-  addUser
+  addUser,
+  postNewCaption
 }
 
 function getUsers (connection) {
@@ -31,4 +32,12 @@ function getImageById (id, conn) {
   return conn('images')
   .select()
   .where('id', id)
+}
+
+function postNewCaption (text, imageId, conn) {
+  return conn('captions')
+  .insert({
+    image_id: imageId,
+    caption_text: text
+  })
 }

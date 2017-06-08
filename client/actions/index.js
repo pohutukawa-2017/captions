@@ -1,6 +1,6 @@
 import request from '../api'
 import {saveUserToken} from '../auth'
-import {getImageById, getCaptionsById} from '../api'
+import {getImageById, getCaptionsById, postNewCaption} from '../api'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -63,6 +63,16 @@ export const captions = (captions) => {
     type: 'GET_CAPTIONS',
     captions
 
+  }
+}
+
+export const saveNewCaption = (caption, cb) => {
+  return (dispatch) => {
+    postNewCaption(caption.imageId, {text: caption.text}, (err, res) => {
+      if (err) return console.log(err) // TODO: Error component
+      dispatch(getCaptionsList(caption.imageId))
+      cb(res.captionId)
+    })
   }
 }
 
