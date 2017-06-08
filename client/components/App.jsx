@@ -1,8 +1,10 @@
 import React from 'react'
+
+import AddImage from './AddImage'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-import Navbar from './Navbar'
-import ImageList from './imageList'
+import NavBar from './NavBar'
+import ImageList from './ImageList'
 import AddCaptionContainer from './AddCaptionContainer'
 import ImageCaption from './ImageCaption'
 import ImageContainer from './ImageContainer'
@@ -13,9 +15,10 @@ const App = () => (
 
   <Router>
     <div className='app'>
-      <Navbar />
+      <NavBar />
       <Route exact path='/' component={ImageList} />
       <Switch>
+        <Route path='/images/add' component={AddImage} />
         <Route exact path='/images/:id' component={ImageContainer} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
