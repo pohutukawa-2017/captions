@@ -25,6 +25,19 @@ export function login (method = 'get', endpoint, data = {}) {
     })
 }
 
+export function postNewImage (pictureURL, callback) {
+  request
+    .post('/api/v1/images')
+    .send({path: pictureURL})
+    .end((err, res) => {
+      if (err) {
+        callback(err)
+      } else {
+        callback(null, res.body)
+      }
+    })
+}
+
 export function getAllImages (callback) {
   request.get('/api/v1/images')
   .end((err, res) => {

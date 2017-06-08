@@ -39,6 +39,14 @@ router.post('/captions/:imageId', (req, res) => {
   })
 })
 
+router.post('/images', (req, res) => {
+  const connection = req.app.get('db')
+  db.postImage(req.body.path, connection)
+  .then(data => {
+    res.json({id: data})
+  })
+})
+
 router.delete('/captions/:id', (req, res) => {
   const connection = req.app.get('db')
   const id = Number(req.params.id)

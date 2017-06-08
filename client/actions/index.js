@@ -1,4 +1,4 @@
-import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, login} from '../api'
+import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, login, postNewImage} from '../api'
 import {saveUserToken} from '../auth'
 
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
@@ -11,6 +11,34 @@ export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 export const REQUEST_PROFILE = 'REQUEST_PROFILE'
 export const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
 export const PROFILE_FAILURE = 'PROFILE_FAILURE'
+export const RECEIVED_IMAGE_ID = 'RECEIVED_IMAGE_ID'
+
+export function postImage (pictureURL) {
+  return (dispatch) => {
+    postNewImage(pictureURL, (err, res) => {
+      if (err) return console.log(err)
+      dispatch(receivedImageId(res.id[0]))
+    })
+  }
+}
+
+export function receivedImageId (id) {
+  return {
+    type: RECEIVED_IMAGE_ID,
+    id
+  }
+}
+
+export function uploadImage () {
+  return function (dispatch) {
+    cloudinary.openUploadWidget({cloud_name: 'dboovyrqb', upload_preset: 'p8w4fgph', tags: ['test']},
+      (error, result) => {
+        dispatch(postImage(result[0].url))
+        // Todo handle error
+      }
+    )
+  }
+}
 
 export const requestImages = () => {
   return {

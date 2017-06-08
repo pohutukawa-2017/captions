@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-
+import imageUpload from './imageUpload'
 import images from './images'
 import auth from './auth'
 import singleImage from './getImage'
@@ -11,5 +11,6 @@ export default combineReducers({
   singleImage,
   captions,
   auth,
+  imageUpload,
   profile
 })

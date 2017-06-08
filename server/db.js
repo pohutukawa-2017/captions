@@ -5,6 +5,7 @@ module.exports = {
   getCaptionsById,
   getImageById,
   postNewCaption,
+  postImage,
   removeCaption,
   addUser,
   getUser,
@@ -56,6 +57,13 @@ function postNewCaption (text, imageId, conn) {
   .insert({
     image_id: imageId,
     caption_text: text
+  })
+}
+
+function postImage (path, conn) {
+  return conn('images')
+  .insert({
+    path: path
   })
 }
 
