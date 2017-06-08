@@ -1,7 +1,7 @@
 import React from 'react'
 import CaptionListItem from './CaptionListItem'
 
-function CaptionList (props){
+function CaptionList (props) {
   function handleClick () {
     console.log(props)
     const imageId = props.routerProps.match.params.id
