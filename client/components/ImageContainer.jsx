@@ -15,7 +15,7 @@ class ImageContainer extends React.Component {
     return (
       <div className='image-container'>
         <Image imgUrl={this.props.image} />
-        <CaptionList captions={this.props.captions} routerProps={this.props}/>
+        <CaptionList captions={this.props.captions} routerProps={this.props} />
       </div>
     )
   }
