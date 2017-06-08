@@ -6,7 +6,7 @@ module.exports = {
 
 function getCaptionsById (id, conn) {
   return conn('captions')
-  .select()
+  .select(`id`, 'image_id as imageId', 'caption_text as captionText')
   .where('image_id', id)
 }
 

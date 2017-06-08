@@ -28,7 +28,7 @@ class AddCaptionContainer extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    image: state.singleImage
+    image: state.singleImage.path
   }
 }
 
