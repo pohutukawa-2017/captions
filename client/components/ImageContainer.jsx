@@ -1,21 +1,31 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getImagePath, getCaptionsList} from '../actions/'
+import {getImagePath, getCaptionsList, fetchImages} from '../actions/'
 import CaptionList from './CaptionList'
 import Image from './Image'
 
 class ImageContainer extends React.Component {
   componentDidMount () {
-    const imageId = this.props.match.params.id
+    this.getImageAndCaptions(this.props.match.params.id)
+  }
+
+  getImageAndCaptions (imageId) {
     this.props.getImagePath(imageId)
     this.props.getCaptionsList(imageId)
+    this.props.fetchImages()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.match.params.id !== nextProps.match.params.id) {
+      this.getImageAndCaptions(nextProps.match.params.id)
+    }
   }
 
   render () {
     return (
       <div className='image-container'>
-        <Image imgUrl={this.props.image} />
+        <Image image={this.props.image} images={this.props.images} />
         <CaptionList captions={this.props.captions} routerProps={this.props}/>
       </div>
     )
@@ -24,8 +34,9 @@ class ImageContainer extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    image: state.singleImage.path,
-    captions: state.captions
+    image: state.singleImage,
+    captions: state.captions,
+    images: state.images
   }
 }
 
@@ -36,6 +47,9 @@ function mapDispatchToProps (dispatch) {
     },
     getCaptionsList: (id) => {
       dispatch(getCaptionsList(id))
+    },
+    fetchImages: () => {
+      dispatch(fetchImages())
     }
   }
 }
