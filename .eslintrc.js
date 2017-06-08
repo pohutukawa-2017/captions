@@ -11,6 +11,8 @@ module.exports = {
   'rules': {
     'react/prop-types': 'off',
     'object-curly-spacing': ['error', 'never'],
-    'arrow-parens': ['error', 'always']
+    'arrow-parens': ['error', 'always'],
+    'no-console': 'error',
+    'no-warning-comments': 'warn'
   }
 }
