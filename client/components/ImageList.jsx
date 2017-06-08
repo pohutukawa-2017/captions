@@ -26,9 +26,7 @@ class ImageList extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchImages: () => {
-      dispatch(fetchImages())
-    }
+    fetchImages: () => dispatch(fetchImages())
   }
 }
 
@@ -38,4 +36,7 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageList)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ImageList)

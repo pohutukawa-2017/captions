@@ -1,16 +1,21 @@
-import {connect} from 'react-redux'
 import React from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+
 import {deleteCaption} from '../actions'
 
 function CaptionListItem (props) {
-  function handleClick (id) {
-    props.dispatch(deleteCaption(props.id, id))
+  function handleClick () {
+    props.dispatch(deleteCaption(props.id, props.imageId))
   }
   return (
     <div>
-      <Link to={`/images/${props.imageId}/${props.id}`}><p>{props.caption}</p></Link>
-      <button onClick={() => handleClick(props.imageId)}>Delete</button>
+      <p>
+        <Link to={`/images/${props.imageId}/${props.id}`}>
+          {props.caption}
+        </Link>
+      </p>
+      <button onClick={handleClick}>Delete</button>
     </div>
   )
 }

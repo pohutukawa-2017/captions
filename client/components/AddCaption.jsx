@@ -5,10 +5,7 @@ import {connect} from 'react-redux'
 class AddCaption extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      imageId: this.props.routerProps.match.params.id,
-      text: ''
-    }
+    this.state = {text: ''}
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -21,21 +18,31 @@ class AddCaption extends React.Component {
 
   handleSubmit (evt) {
     evt.preventDefault()
-    this.props.dispatch(saveNewCaption(this.state, (newCaptionId) => {
-      this.props.routerProps.history.push(`/images/${this.state.imageId}/${newCaptionId}`)
-    }))
+    this.props.addCaption(this.state.text)
   }
 
   render () {
     return (
       <div className="add-caption">
-        <form onSubmit={this.handleSubmit}>
-          <textarea name="text" className="text-box" placeholder="Insert Caption" onChange={this.handleChange}/><br/>
-          <button type="submit">Submit</button>
-        </form>
+        <textarea name="text"
+          className="text-box"
+          placeholder="Insert Caption"
+          onChange={this.handleChange}/>
+        <button type="submit"
+          onClick={this.handleSubmit}>Submit</button>
       </div>
     )
   }
 }
 
-export default connect()(AddCaption)
+function mapDispatchToProps (dispatch) {
+  return {
+    addCaption: (captionText) => {
+      dispatch(saveNewCaption(this.state, (newCaptionId) => {
+        this.props.navigate(`/images/${this.props.imageId}/${newCaptionId}`)
+      }))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddCaption)

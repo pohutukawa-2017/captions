@@ -32,7 +32,7 @@ class Register extends React.Component {
     const userInfo = {
       username: this.state.username.trim(),
       password: this.state.password.trim(),
-      profilePic: this.state.profilePic.trim()
+      profilePic: this.state.profilePic
     }
     this.props.loginUser(userInfo, registerUrl, this.redirectToHomepage)
   }
@@ -46,11 +46,25 @@ class Register extends React.Component {
       <div className='login-page'>
         <div>
           <h2>Register an Account</h2>
-          <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
-          <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
-          <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
-          <p><input name='profilePic' onChange={this.handleChange} placeholder='Profile Pic Url' /></p>
-          <p><button onClick={this.handleClick}>Register</button></p>
+          <p>
+            <input name='username' placeholder='Username'
+              onChange={this.handleChange} />
+          </p>
+          <p>
+            <input name='password' placeholder='Password' type='password'
+              onChange={this.handleChange} />
+          </p>
+          <p>
+            <input name='confirm' placeholder='Confirm Password' type='password'
+              onChange={this.handleChange} />
+          </p>
+          <p>
+            <input name='profilePic' placeholder='Profile Pic Url'
+              onChange={this.handleChange} />
+          </p>
+          <p>
+            <button onClick={this.handleClick}>Register</button>
+          </p>
           <div className='error-message'>
             <ErrorMessage />
           </div>
@@ -62,7 +76,9 @@ class Register extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    loginUser: (userInfo, route, redirect) => dispatch(loginUser(userInfo, route, redirect)),
+    loginUser: (userInfo, route, redirect) => {
+      dispatch(loginUser(userInfo, route, redirect)),
+    }
     loginError: (message) => dispatch(loginError(message))
   }
 }

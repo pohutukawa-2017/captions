@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+
 import {getImagePath, getCaptionsList} from '../actions/'
 import CaptionList from './CaptionList'
 import Image from './Image'
@@ -30,13 +31,12 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getImagePath: (id) => {
-      dispatch(getImagePath(id))
-    },
-    getCaptionsList: (id) => {
-      dispatch(getCaptionsList(id))
-    }
+    getImagePath: (id) => dispatch(getImagePath(id)),
+    getCaptionsList: (id) => dispatch(getCaptionsList(id))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ImageContainer)

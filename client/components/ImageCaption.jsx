@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+
 import {getImagePath, getCaptionsList} from '../actions/'
 
 class ImageCaption extends React.Component {
@@ -14,7 +15,8 @@ class ImageCaption extends React.Component {
     return (
       <div className='image-caption'>
         <Link to={`/images/${this.props.image.id}`}>
-        <img className='image-caption-image' src={this.props.image.path} /></Link>
+          <img className='image-caption-image' src={this.props.image.path} />
+        </Link>
         <p>{this.props.caption.captionText}</p>
       </div>
     )
@@ -32,7 +34,7 @@ ImageCaption.defaultProps = {
 }
 
 function mapStateToProps (state, ownProps) {
-  const captionId = Number(ownProps.match.params.captionid)
+  const captionId = Number(ownProps.match.params.captionId)
   const singleCap = state.captions.find((caption) => {
     return caption.id === captionId
   })
@@ -44,13 +46,12 @@ function mapStateToProps (state, ownProps) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getImagePath: (id) => {
-      dispatch(getImagePath(id))
-    },
-    getCaptionsList: (id) => {
-      dispatch(getCaptionsList(id))
-    }
+    getImagePath: (id) => dispatch(getImagePath(id)),
+    getCaptionsList: (id) => dispatch(getCaptionsList(id))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageCaption)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ImageCaption)
