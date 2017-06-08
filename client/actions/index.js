@@ -1,4 +1,4 @@
-import {getAllImages, getImageById, getCaptionsById, postNewCaption, request} from '../api'
+import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, request} from '../api'
 import {saveUserToken} from '../auth'
 
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
