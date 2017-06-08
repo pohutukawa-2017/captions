@@ -1,5 +1,6 @@
 import request from '../api'
 import {saveUserToken} from '../auth'
+import {getImageById, getCaptionsById} from '../api'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -51,10 +52,10 @@ export function loginUser (loginInfo, route, redirect) {
   }
 }
 
-export const imagePath = (url) => {
+export const imagePath = (image) => {
   return {
     type: 'GET_IMAGE',
-    image: url
+    image: image
   }
 }
 
@@ -63,5 +64,29 @@ export const captions = (captions) => {
     type: 'GET_CAPTIONS',
     captions
 
+  }
+}
+
+export const getImagePath = (id) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    if (!state.singleImage.id || state.singleImage.id !== id) {
+      getImageById(id, (err, res) => {
+        if (err) return console.log(err) // TODO: Error component
+        dispatch(imagePath(res))
+      })
+    }
+  }
+}
+
+export const getCaptionsList = (id) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    if (state.captions.length === 0 || state.singleImage.id !== id) {
+      getCaptionsById(id, (err, res) => {
+        if (err) return console.log(err) // TODO: Error component
+        dispatch(captions(res))
+      })
+    }
   }
 }
