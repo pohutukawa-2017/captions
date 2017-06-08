@@ -1,5 +1,16 @@
 import request from 'superagent'
 
+export function getAllImages (callback) {
+  request.get('/api/v1/images')
+  .end((err, res) => {
+    if (err) {
+      callback(err)
+    } else {
+      callback(null, res.body)
+    }
+  })
+}
+
 export function getImageById (id, callback) {
   request.get(`/api/v1/images/${id}`)
   .end((err, res) => {

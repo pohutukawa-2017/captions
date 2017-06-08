@@ -1,4 +1,33 @@
+.dot {
+  width: 2rem;
+  height: 2rem;
+  border: 1px #ccc solid;
+  border-radius: 50%;
+}
 
+<<<<<<< HEAD
+button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.listings-container {
+  display:flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image-container {
+  max-width: 20%;
+  margin:10px;
+}
+
+.image-thumbnail-container img {
+  width:100%;
+}
+=======
 .image-container {
   display: flex;
   justify-content: center;
@@ -21,3 +50,4 @@
 li {
   list-style: none;
 }
+>>>>>>> fe59005ad4d262d7811def2125e57038b180a0ec
