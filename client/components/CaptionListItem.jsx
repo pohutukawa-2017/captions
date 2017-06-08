@@ -8,7 +8,6 @@ function CaptionListItem (props) {
     props.dispatch(deleteCaption(props.id, id))
   }
   return (
-
     <div>
       <Link to={`/images/${props.imageId}/${props.id}`}><p>{props.caption}</p></Link><button onClick={() => handleClick(props.imageId)}>Delete</button>
     </div>

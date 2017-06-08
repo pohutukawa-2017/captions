@@ -1,8 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const router = express.Router()
-const db = require('./db')
 
+const db = require('./db')
+const auth = require('./auth')
+
+const router = express.Router()
 router.use(bodyParser.json())
 
 router.get('/images/:id', (req, res) => {
@@ -32,11 +34,20 @@ router.post('/captions/:imageId', (req, res) => {
 router.delete('/captions/:id', (req, res) => {
   const connection = req.app.get('db')
   const id = Number(req.params.id)
-  console.log(id)
   db.removeCaption(id, connection)
-  .then(f => f)
-  res.json({
-    id: Number(req.params.id)
+  .then(() => {
+    res.json({
+      id: Number(req.params.id)
+    })
   })
 })
+
+router.post('/authenticate', (req, res) => {
+  auth.verify(req, res, auth.issueJwt)
+})
+
+router.post('/register', (req, res) => {
+  auth.register(req, res, auth.issueJwt)
+})
+
 module.exports = router

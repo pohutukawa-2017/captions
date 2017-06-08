@@ -1,14 +1,16 @@
 module.exports = {
-  "extends": [
-    "standard",
-    "plugin:react/recommended"
+  'extends': [
+    'standard',
+    'plugin:react/recommended'
   ],
-  "plugins": [
-    "standard",
-    "promise",
-    "react"
+  'plugins': [
+    'standard',
+    'promise',
+    'react'
   ],
-  "rules": {
-    "react/prop-types": "off"
+  'rules': {
+    'react/prop-types': 'off',
+    'object-curly-spacing': ['error', 'never'],
+    'arrow-parens': ['error', 'always']
   }
-};
+}

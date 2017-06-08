@@ -14,7 +14,7 @@ class AddCaptionContainer extends React.Component {
       this.props.dispatch(imagePath(res))
     })
   }
-  
+
   render() {
     return (
       <div className="add-caption-container">
