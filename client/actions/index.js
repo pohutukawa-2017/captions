@@ -1,17 +1,9 @@
 import {getImageById, getCaptionsById} from '../api'
 
-export const imagePath = (url) => {
+export const imagePath = (image) => {
   return {
     type: 'GET_IMAGE',
-    image: url
-  }
-}
-
-export const imagePathWithId = (url, id) => {
-  return {
-    type: 'GET_IMAGE',
-    image: url,
-    id
+    image: image
   }
 }
 

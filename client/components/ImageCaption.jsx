@@ -14,7 +14,7 @@ class ImageCaption extends React.Component {
     return (
       <div className='image-caption'>
         <Link to={`/images/${this.props.image.id}`}> <img src={this.props.image.path} /></Link>
-        <p>{this.props.caption.caption_text}</p>
+        <p>{this.props.caption.captionText}</p>
       </div>
     )
   }
