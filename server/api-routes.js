@@ -7,7 +7,6 @@ router.get('/images', (req, res) => {
   db.getImages(connection)
   .then((data) => {
     res.json({result: data})
-    console.log(data)
   })
 })
 

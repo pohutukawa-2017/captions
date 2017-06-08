@@ -6,8 +6,8 @@ module.exports = {
 
 function getImages (conn) {
   return conn('images')
-  .select()
-  .orderByRaw('id DESC')
+   .select()
+   .orderByRaw('id DESC')
 }
 
 function getCaptionsById (id, conn) {

@@ -3,28 +3,43 @@ import {connect} from 'react-redux'
 
 import ImageThumbnail from './ImageThumbnail'
 
+
 function ImageList (props) {
-  function createListImage () {
-    return props.images.map((image, key) => {
-      return (
-        <div key={key} className='image-container'>
-          <ImageThumbnail id={image.id} img_url={image.path} />
-        </div>
-      )
-    })
+  componentDidMount () {
+    props.fetchImages()
   }
+
   return (
     <div className='listings-container'>
-      {createListImage()}
+      {props.images.map((image) => {
+        return (
+          <div key={image.id}>
+            <ImageThumbnail id={image.id} imgUrl={image.path} />
+          </div>
+        )
+      })}
     </div>
   )
 }
 
+function fetchImages () {
+  return (dispatch) => {
+    dispatch(requestImages())
+    request
+     .get('/api/v1/images')
+     .end((err, res) => {
+       if (err) {
+         dispatch(showError(err.message))
+         return
+       }
+       dispatch(receiveImages(res.body))
+     })
+  }
+}
+
 function mapStateToProps (state) {
-  console.log('this is state', state)
   return {
     images: state.images
-
   }
 }
 
