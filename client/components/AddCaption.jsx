@@ -6,7 +6,6 @@ class AddCaption extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      //user_id: this.props.userId, TODO: once login is completeed
       imageId: this.props.routerProps.match.params.id,
       text: ''
     }
