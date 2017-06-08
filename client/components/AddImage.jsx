@@ -21,7 +21,7 @@ class AddImage extends React.Component {
       <div>
         {this.state.uploadDone && (<Redirect to={`/images/${this.props.addedImage.id}`} />)}
         <button onClick={this.props.uploadImage} className='upload-button'>
-            Add Image
+          Add Image
         </button>
       </div>
     )
