@@ -20,9 +20,20 @@ export default function consume (method = 'get', endpoint, data = {}) {
     .then((res) => {
       return res
     })
-    .catch(err => {
+    .catch((err) => {
       throw err
     })
+}
+
+export function getAllImages (callback) {
+  request.get('/api/v1/images')
+  .end((err, res) => {
+    if (err) {
+      callback(err)
+    } else {
+      callback(null, res.body)
+    }
+  })
 }
 
 export function getImageById (id, callback) {

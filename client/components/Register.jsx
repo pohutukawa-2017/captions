@@ -63,7 +63,7 @@ class Register extends React.Component {
 function mapDispatchToProps (dispatch) {
   return {
     loginUser: (userInfo, route, redirect) => dispatch(loginUser(userInfo, route, redirect)),
-    loginError: message => dispatch(loginError(message))
+    loginError: (message) => dispatch(loginError(message))
   }
 }
 
