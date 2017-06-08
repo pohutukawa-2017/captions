@@ -1,4 +1,4 @@
-import {getImageById, getCaptionsById} from '../api'
+import {getImageById, getCaptionsById, postNewCaption} from '../api'
 
 export const imagePath = (image) => {
   return {
@@ -11,6 +11,16 @@ export const captions = (captions) => {
   return {
     type: 'GET_CAPTIONS',
     captions
+  }
+}
+
+export const saveNewCaption = (caption, cb) => {
+  return (dispatch) => {
+    postNewCaption(caption.imageId, {text: caption.text}, (err, res) => {
+      if (err) return console.log(err) // TODO: Error component
+      dispatch(getCaptionsList(caption.imageId))
+      cb(res.captionId)
+    })
   }
 }
 
