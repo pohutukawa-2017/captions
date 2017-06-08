@@ -14,7 +14,7 @@ class ImageList extends React.Component {
     <div className='listings-container'>
       {this.props.images.map((image) => {
         return (
-          <div key={image.id}>
+          <div key={image.id} className='image-wrapper'>
             <ImageThumbnail id={image.id} imgUrl={image.path} />
           </div>
         )

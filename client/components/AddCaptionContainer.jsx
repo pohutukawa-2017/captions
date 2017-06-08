@@ -10,12 +10,12 @@ class AddCaptionContainer extends React.Component {
   componentDidMount () {
     const id = Number(this.props.match.params.id)
     getImageById(id, (err, res) => {
-      if (err) return console.log(err) //TODO: Error component
+      if (err) return console.log(err) // TODO: Error component
       this.props.dispatch(imagePath(res))
     })
   }
-  
-  render() {
+
+  render () {
     return (
       <div className="add-caption-container">
         <img src={this.props.image} className="image-add-caption"/>
