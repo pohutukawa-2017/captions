@@ -9,6 +9,8 @@ module.exports = {
     "react"
   ],
   "rules": {
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "object-curly-spacing": ["error", "never"],
+    "arrow-parens": ["error", "always"]
   }
 };
