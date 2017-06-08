@@ -10,7 +10,6 @@ import Login from './Login'
 import Register from './Register'
 
 const App = () => (
-
   <Router>
     <div className='app'>
       <Navbar />
@@ -20,7 +19,7 @@ const App = () => (
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
         <Route path='/images/:id/add-caption' component={AddCaptionContainer} />
-        <Route path='/images/:id/:captionid' component={ImageCaption} />
+        <Route path='/images/:id/:captionId' component={ImageCaption} />
       </Switch>
     </div>
   </Router>

@@ -10,10 +10,12 @@ button {
   height: 2rem;
   border-radius: 50%;
 }
+
 .navbar-container .site-name, .navbar-container .site-menu {
   width:50%;
 }
-navbar-container .site-menu {
+
+.navbar-container .site-menu {
   text-align:right;
 }
 
@@ -106,10 +108,6 @@ li {
 .add-caption {
   margin: 15px;
   text-align: center;
-}
-
-li {
-  list-style: none;
 }
 
 .text-box {

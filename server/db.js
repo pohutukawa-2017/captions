@@ -10,36 +10,29 @@ module.exports = {
 }
 
 function getImages (conn) {
-  return conn('images')
-   .select()
-   .orderByRaw('id DESC')
+  return conn('images').select().orderByRaw('id DESC')
 }
 
-function getUsers (connection) {
-  return connection('users').select()
+function getUsers (conn) {
+  return conn('users').select()
 }
 
-function getUserByName (username, connection) {
-  return connection('users')
-    .select()
-    .where('username', username)
+function getUserByName (username, conn) {
+  return conn('users').select().where('username', username)
 }
 
-function addUser (user, connection) {
-  return connection('users')
-    .insert(user)
+function addUser (user, conn) {
+  return conn('users').insert(user)
 }
 
 function getCaptionsById (id, conn) {
   return conn('captions')
-  .select('id', 'image_id as imageId', 'caption_text as captionText')
-  .where('image_id', id)
+    .select('id', 'image_id as imageId', 'caption_text as captionText')
+    .where('image_id', id)
 }
 
 function getImageById (id, conn) {
-  return conn('images')
-  .select()
-  .where('id', id)
+  return conn('images').select().where('id', id)
 }
 
 function postNewCaption (text, imageId, conn) {
@@ -51,7 +44,5 @@ function postNewCaption (text, imageId, conn) {
 }
 
 function removeCaption (captionId, conn) {
-  return conn('captions')
-  .where('id', captionId)
-  .del()
+  return conn('captions').where('id', captionId).del()
 }

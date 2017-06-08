@@ -1,4 +1,5 @@
 import React from 'react'
+
 import CaptionListItem from './CaptionListItem'
 
 function CaptionList (props) {
@@ -9,9 +10,9 @@ function CaptionList (props) {
   return (
     <div className='caption-list'>
       <button onClick={handleClick}>New Caption</button>
-      {props.captions.map((item, key) => {
+      {props.captions.map((item) => {
         return (
-          <div key={key}>
+          <div key={item.id}>
             <CaptionListItem imageId={item.imageId} id={item.id} caption={item.captionText} />
           </div>
         )

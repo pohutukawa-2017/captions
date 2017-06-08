@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
+
 import {getImageById} from '../api'
 import {imagePath} from '../actions'
 import AddCaption from './AddCaption'
 
 class AddCaptionContainer extends React.Component {
-
   componentDidMount () {
     const id = Number(this.props.match.params.id)
     getImageById(id, (err, res) => {
@@ -15,10 +15,12 @@ class AddCaptionContainer extends React.Component {
   }
 
   render () {
+    const imageId = this.props.routerProps.match.params.id
+    const navigate = this.props.routerProps.history.push
     return (
       <div className="add-caption-container">
         <img src={this.props.image} className="image-add-caption"/>
-        <AddCaption routerProps={this.props}/>
+        <AddCaption imageId={imageId} navigate={navigate} />
       </div>
     )
   }

@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {loginUrl} from '../api'
 import {loginUser} from '../actions'
 import ErrorMessage from './ErrorMessage'
-import {loginUrl} from '../api'
 
 class Login extends React.Component {
   constructor (props) {
@@ -40,8 +40,17 @@ class Login extends React.Component {
       <div className='login-page'>
         <div className='login-form'>
           <h2>Login</h2>
-          <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
-          <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
+          <p>
+            <input name='username'
+              placeholder='Username'
+              onChange={this.handleChange} />
+          </p>
+          <p>
+            <input name='password'
+              placeholder='Password'
+              type='password'
+              onChange={this.handleChange} />
+          </p>
           <p><button onClick={this.handleClick}>Login</button></p>
           <div className='error-message'>
             <ErrorMessage />
@@ -54,7 +63,9 @@ class Login extends React.Component {
 
 function mapDispatchToProps (dispatch) {
   return {
-    loginUser: (loginInfo, route, redirect) => dispatch(loginUser(loginInfo, route, redirect))
+    loginUser: (loginInfo, route, redirect) => {
+      dispatch(loginUser(loginInfo, route, redirect))
+    }
   }
 }
 

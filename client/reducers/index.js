@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux'
 
-import images from './images'
 import auth from './auth'
-import singleImage from './getImage'
-import captions from './getCaptions'
+import images from './images'
+import captions from './captions'
+import singleImage from './single-image'
 
 export default combineReducers({
+  auth,
   images,
-  singleImage,
   captions,
-  auth
+  singleImage
 })
