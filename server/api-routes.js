@@ -1,8 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const router = express.Router()
-const db = require('./db')
 
+const db = require('./db')
+const auth = require('./auth')
+
+const router = express.Router()
 router.use(bodyParser.json())
 
 router.get('/images', (req, res) => {
@@ -35,6 +37,14 @@ router.post('/captions/:imageId', (req, res) => {
   .then((data) => {
     res.json({captionId: data[0]})
   })
+})
+
+router.post('/authenticate', (req, res) => {
+  auth.verify(req, res, auth.issueJwt)
+})
+
+router.post('/register', (req, res) => {
+  auth.register(req, res, auth.issueJwt)
 })
 
 module.exports = router

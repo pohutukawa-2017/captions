@@ -1,6 +1,13 @@
-import {getAllImages, getImageById, getCaptionsById, postNewCaption} from '../api'
+import {getAllImages, getImageById, getCaptionsById, postNewCaption, request} from '../api'
+import {saveUserToken} from '../auth'
+
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
 export const RECEIVE_IMAGES = 'RECEIVE_IMAGES'
+export const LOGIN_REQUEST = 'LOGIN_REQUEST'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const REGISTER_ERROR = 'REGISTER_ERROR'
+export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 
 export const requestImages = () => {
   return {
@@ -15,6 +22,32 @@ export const receiveImages = (images) => {
   }
 }
 
+function requestLogin () {
+  return {
+    type: LOGIN_REQUEST,
+    isFetching: true,
+    isAuthenticated: false
+  }
+}
+
+function receiveLogin (user) {
+  return {
+    type: LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    user
+  }
+}
+
+export function loginError (message) {
+  return {
+    type: LOGIN_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message
+  }
+}
+
 export const imagePath = (image) => {
   return {
     type: 'GET_IMAGE',
@@ -26,6 +59,24 @@ export const captions = (captions) => {
   return {
     type: 'GET_CAPTIONS',
     captions
+
+  }
+}
+
+export function loginUser (loginInfo, route, redirect) {
+  return (dispatch) => {
+    dispatch(requestLogin())
+    return request('post', route, loginInfo)
+      .then((response) => {
+        if (!response.body.token) {
+          return dispatch(loginError(response.body.info))
+        } else {
+          const userInfo = saveUserToken(response.body.token)
+          dispatch(receiveLogin(userInfo))
+          redirect()
+        }
+      })
+      .catch((err) => dispatch(loginError(err.response.body.info)))
   }
 }
 

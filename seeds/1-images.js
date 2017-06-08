@@ -1,5 +1,5 @@
 
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
   return knex('images').del()
     .then(function () {
@@ -11,6 +11,6 @@ exports.seed = function(knex, Promise) {
         {id: 4, path: 'http://stories.barkpost.com/wp-content/uploads/2014/05/dogs-allowed-cute-dog.jpg'},
         {id: 5, path: 'https://i.ytimg.com/vi/f-e9hSUSlSM/maxresdefault.jpg'},
         {id: 6, path: 'http://beforeitsnews.com/contributor/upload/486248/images/cat-funny-5.jpg'}
-      ]);
-    });
-};
+      ])
+    })
+}
