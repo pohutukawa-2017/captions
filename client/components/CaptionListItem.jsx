@@ -10,9 +10,15 @@ function CaptionListItem (props) {
   return (
     <div>
       <Link to={`/images/${props.imageId}/${props.id}`}><p>{props.caption}</p></Link>
-      <button onClick={() => handleClick(props.imageId)}>Delete</button>
+      {props.userId === props.authorId && <button onClick={() => handleClick(props.imageId)}>Delete</button>}
     </div>
   )
 }
 
-export default connect()(CaptionListItem)
+function mapStateToProps (state) {
+  return {
+    userId: state.auth.user.id
+  }
+}
+
+export default connect(mapStateToProps)(CaptionListItem)
