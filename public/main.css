@@ -65,8 +65,20 @@ ul.navbar-nav li a {
 .image-container {
   align-items: center;
 }
+.vertical-align {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.previous-image, .next-image {
+text-align: center;
+}
 .arrow {
-  width:20%;
+  width:60%;
+}
+.arrow img {
+  margin:0 auto;
 }
 .image img {
   width:100%;
@@ -86,7 +98,18 @@ ul.navbar-nav li a {
 }
 
 .caption-list {
+  text-align: center;
 }
+.new-caption {
+  float:right;
+}
+.caption {
+  clear:both;
+  margin-bottom:20px;
+  background:#fff;
+  padding:20px;
+}
+
 .image-caption p {
   text-transform: uppercase;
   font-family:impact;

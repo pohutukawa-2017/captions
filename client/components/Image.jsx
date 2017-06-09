@@ -16,7 +16,7 @@ function Image (props) {
 
   return (
     <div className='image-and-nav-buttons-container container'>
-      <div className='row'>
+      <div className='row vertical-align'>
       <div className='previous-image col-md-2'>
         {prevImage &&
           <Link to={`/images/${prevImage.id}`}><img className='arrow' src='/previous-image.png' /></Link>
