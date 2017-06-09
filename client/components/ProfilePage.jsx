@@ -15,7 +15,7 @@ class ProfilePage extends React.Component {
 
   render () {
     return (
-      <div className='profile-page'>
+      <div className='profile-page container'>
         <div className='profile-form'>
           <h2>Profile Page</h2>
           <p>Username: {this.props.profile.username}</p>
