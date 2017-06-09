@@ -30,8 +30,8 @@ class AddCaption extends React.Component {
     return (
       <div className='add-caption'>
         <form onSubmit={this.handleSubmit}>
-          <textarea name='text' className='text-box' placeholder='Insert Caption' onChange={this.handleChange} /> <br />
-          <button type='submit'>Submit</button>
+          <textarea name='text' className='form-control' placeholder='Insert Caption' onChange={this.handleChange} /> <br />
+          <button className='btn btn-primary'type='submit'>Submit</button>
         </form>
       </div>
     )

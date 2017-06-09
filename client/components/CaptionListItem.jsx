@@ -10,7 +10,7 @@ function CaptionListItem (props) {
   return (
     <div>
       <Link to={`/images/${props.imageId}/${props.id}`}><p>{props.caption}</p></Link>
-      {props.userId === props.authorId && <button onClick={() => handleClick(props.imageId)}>Delete</button>}
+      {props.userId === props.authorId && <button className='btn btn-xs btn-danger' onClick={() => handleClick(props.imageId)}>Delete</button>}
     </div>
   )
 }
