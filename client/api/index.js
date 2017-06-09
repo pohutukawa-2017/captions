@@ -6,7 +6,7 @@ const baseUrl = '/api/v1'
 export const registerUrl = '/register'
 export const loginUrl = '/authenticate'
 
-export default function consume (method = 'get', endpoint, data = {}) {
+export function login (method = 'get', endpoint, data = {}) {
   const dataMethod = method.toLowerCase() === 'get' && 'query' || 'send'
   const token = get('token')
   const headers = {
@@ -22,6 +22,19 @@ export default function consume (method = 'get', endpoint, data = {}) {
     })
     .catch((err) => {
       throw err
+    })
+}
+
+export function postNewImage (pictureURL, callback) {
+  request
+    .post('/api/v1/images')
+    .send({path: pictureURL})
+    .end((err, res) => {
+      if (err) {
+        callback(err)
+      } else {
+        callback(null, res.body)
+      }
     })
 }
 
