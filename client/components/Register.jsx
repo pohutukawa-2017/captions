@@ -62,13 +62,14 @@ class Register extends React.Component {
       <div className='login-page'>
         <div>
           <h2>Register an Account</h2>
-          <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
-          <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
-          <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
+
+          <p><input className='form-control' name='username' onChange={this.handleChange} placeholder='Username' /></p>
+          <p><input className='form-control' type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
+          <p><input className='form-control' type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
           {this.state.displayUpload &&
           <Dropzone
             multiple={false}
-            accept="image/*"
+            accept='image/*'
             onDrop={this.handleImageDrop}>
             <p>Drop an image or click to select a file to upload.</p>
           </Dropzone>}
@@ -79,7 +80,7 @@ class Register extends React.Component {
             <img src={this.state.profilePic} />
           </div>}
 
-          <p><button onClick={this.handleClick} disabled={this.state.imageUploading}>Register</button></p>
+          <p><button className='btn btn-primary' onClick={this.handleClick} disabled={this.state.imageUploading}>Register</button></p>
 
         </div>
       </div>
