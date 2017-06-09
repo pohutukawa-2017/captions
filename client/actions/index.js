@@ -32,10 +32,6 @@ export function receivedImageId (id) {
 
 export function uploadImage () {
   return function (dispatch) {
-<<<<<<< HEAD
-    cloudinary.openUploadWidget({cloud_name: 'dboovyrqb', upload_preset: 'p8w4fgph', tags: ['test']},
-      (err, result) => {
-=======
     cloudinary.openUploadWidget({
       cloud_name: 'dboovyrqb',
       upload_preset: 'p8w4fgph',
@@ -48,8 +44,7 @@ export function uploadImage () {
       min_image_height: 400,
       cropping_validate_dimensions: true
     },
-      (error, result) => {
->>>>>>> 86d9aaf6515300b5dca839449a7306c5b28c105c
+      (err, result) => {
         dispatch(postImage(result[0].url))
         if (err) return dispatch(error(err.message))
       }
