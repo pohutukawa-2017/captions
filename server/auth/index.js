@@ -7,7 +7,7 @@ const db = require('../db')
 const crypto = require('./crypto')
 
 function issueJwt (user, res) {
-  const token = createToken(user, process.env.JWT_SECRET || 'this is our awesome secret')
+  const token = createToken(user, process.env.JWT_SECRET)
   res.json({
     message: 'Authentication successful.',
     token
@@ -22,6 +22,16 @@ function createToken (user, secret) {
   }, secret, {
     expiresIn: 60 * 60 * 24
   })
+}
+
+function handleError (err, req, res, next) {
+  if (err) {
+    return res.status(403).json({
+      message: 'Access to this resource was denied.',
+      info: err.message
+    })
+  }
+  next()
 }
 
 function verify (req, res, callback) {
@@ -89,5 +99,6 @@ function register (req, res, callback) {
 module.exports = {
   verify,
   issueJwt,
-  register
+  register,
+  handleError
 }

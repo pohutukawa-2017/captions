@@ -16,6 +16,10 @@ const Navbar = (props) => {
           <Link to='/'> <img src='/images/captions-logo.jpg' /> </Link>
         </div>
         <div id='navbar' className='navbar-collapse collapse'>
+          <ul className='nav navbar-nav'>
+            {props.auth.isAuthenticated && (<li><a href='/images/add'>Add image</a></li>)}
+            {!props.auth.isAuthenticated && (<li><a href='/login'>Add image</a></li>)}
+          </ul>
           <ul className='nav navbar-nav navbar-right'>
             {!props.auth.isAuthenticated && (<li><a href='/register'>Register</a></li>)}
             {!props.auth.isAuthenticated && (<li><a href='/login'>Sign in</a></li>)}

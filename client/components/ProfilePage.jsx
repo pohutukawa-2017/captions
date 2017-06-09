@@ -24,7 +24,7 @@ class ProfilePage extends React.Component {
           <div className='profile-image-container'>
             {this.props.profile.images.map((image) => {
               return (
-                <div className='image-wrapper'>
+                <div key={image.id} className='image-wrapper'>
                   <div className='image-thumbnail-container'>
                     <Link to={`/images/${image.id}`}>
                       <img src={image.path} />

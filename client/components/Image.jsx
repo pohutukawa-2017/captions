@@ -1,11 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {cropUrl} from '../utils/cloudinary'
 
 function isWithinBounds (index, arr) {
   return index >= 0 && (index < arr.length)
 }
 
 function Image (props) {
+  const url = cropUrl(props.image.path)
   const imageIndex = props.images.findIndex((image) => props.image.id === image.id)
   const prevArrayId = imageIndex - 1
   const nextArrayId = imageIndex + 1
@@ -23,10 +25,11 @@ function Image (props) {
         }
       </div>
       <div className='image col-md-8'>
-        <img src={props.image.path} />
+        <img src={url} />
       </div>
       <div className='next-image col-md-2'>
         {nextImage &&
+
           <Link to={`/images/${nextImage.id}`}><img className='arrow' src='/next-image.png' /></Link>
         }
       </div>
