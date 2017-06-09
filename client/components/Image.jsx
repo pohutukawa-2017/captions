@@ -18,7 +18,7 @@ function Image (props) {
     <div className='image-and-nav-buttons-container'>
       <div className='previous-image'>
         {prevImage &&
-          <Link to={`/images/${prevImage.id}`}><img src="/previous-image.png" /></Link>
+          <Link to={`/images/${prevImage.id}`}><img src='/previous-image.png' /></Link>
         }
       </div>
       <div className='image'>
@@ -26,7 +26,7 @@ function Image (props) {
       </div>
       <div className='next-image'>
         {nextImage &&
-          <Link to={`/images/${nextImage.id}`}><img src="/next-image.png" /></Link>
+          <Link to={`/images/${nextImage.id}`}><img src='/next-image.png' /></Link>
         }
       </div>
     </div>

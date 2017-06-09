@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const Navbar = (props) => {
   return (
@@ -12,13 +13,12 @@ const Navbar = (props) => {
             <span className='icon-bar'></span>
             <span className='icon-bar'></span>
           </button>
-        <a href='/'><img src='/images/captions-logo.jpg' /></a>
+          <Link to='/'> <img src='/images/captions-logo.jpg' /> </Link>
         </div>
         <div id='navbar' className='navbar-collapse collapse'>
-
           <ul className='nav navbar-nav navbar-right'>
-            <li><a href='/register'>Register</a></li>
-            <li><a href='/login'>Sign in</a></li>
+            {!props.auth.isAuthenticated && (<li><a href='/register'>Register</a></li>)}
+            {!props.auth.isAuthenticated && (<li><a href='/login'>Sign in</a></li>)}
             {props.auth.isAuthenticated && (<li>Hi {props.auth.user.username}!</li>)}
           </ul>
         </div>
