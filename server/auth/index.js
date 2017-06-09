@@ -61,7 +61,11 @@ function register (req, res, callback) {
     })
   }
   const passwordHash = crypto.getHash(req.body.password)
-  const user = {username: req.body.username, password_hash: passwordHash, profile_pic: req.body.profilePic || './defaultprofilepic.png'}
+  const user = {
+    username: req.body.username,
+    password_hash: passwordHash,
+    profile_pic: req.body.profilePic || '/default-profile-pic.png'
+  }
   db.getUserByName(user.username, connection)
     .then((users) => {
       if (users.length !== 0) {
