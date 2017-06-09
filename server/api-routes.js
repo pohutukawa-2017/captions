@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
   auth.register(req, res, auth.issueJwt)
 })
 
-router.get('/profile/:id', (req, res) => {
+router.get('/users/:id', (req, res) => {
   const connection = req.app.get('db')
   const id = Number(req.params.id)
   db.getUser(id, connection)
@@ -49,7 +49,7 @@ router.get('/profile/:id', (req, res) => {
         id: results[0].userId,
         username: results[0].username,
         profilePic: results[0].profile_pic,
-        images: results.map(image => {
+        images: results.map((image) => {
           return {id: image.id, path: image.path}
         })
       }
