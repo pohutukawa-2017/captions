@@ -1,29 +1,36 @@
-.dot {
-  width: 2rem;
-  height: 2rem;
-  border: 1px #ccc solid;
-  border-radius: 50%;
+body {
+  background: #fafafa;
+  color: #333333;
 }
 
-button {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
+nav.navbar-default {
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+  margin-bottom:40px;
 }
-.navbar-container .site-name, .navbar-container .site-menu {
-  width:50%;
+
+.navbar-header img {
+  width: 40%;
 }
+.navbar-container
+
 navbar-container .site-menu {
   text-align:right;
 }
 
-ul.menu {
+ul.navbar-nav {
   text-align:right;
 }
 
-ul.menu li {
+ul.navbar-nav li {
   margin:10px;
   display:inline-block;
+}
+
+ul.navbar-nav li a {
+  color: #3897f0;
+  font-size: 16px;
+  font-weight:bold;
 }
 
 .listings-container {
@@ -34,8 +41,7 @@ ul.menu li {
 }
 
 .image-wrapper {
-  max-width: 20%;
-  margin:10px;
+  margin-bottom: 30px;
 }
 
 .image-thumbnail-container img {
@@ -53,15 +59,29 @@ ul.menu li {
 .image-caption-image {
   display: flex;
   justify-content: center;
-  max-width: 600px;
   height: auto;
 }
 
 .image-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
+}
+.vertical-align {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.previous-image, .next-image {
+  text-align: center;
+}
+.arrow {
+  width:60%;
+}
+.arrow img {
+  margin:0 auto;
+}
+.image img {
+  width:100%;
 }
 .profile-image-container {
   display: flex;
@@ -70,30 +90,44 @@ ul.menu li {
 }
 
 .image-and-nav-buttons-container {
-  display: flex;
-  justify-content: row;
 }
 
 .image {
-  display: flex;
   justify-content: center;
-  max-width: 600px;
   height: auto;
 }
 
 .caption-list {
   text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 20px;
+}
+.new-caption {
+  float:right;
+}
+.caption {
+  clear:both;
+  margin-bottom:20px;
+  background:#fff;
+  padding:20px;
 }
 
+.image-caption p {
+  text-transform: uppercase;
+  font-family:impact;
+  font-size: 44px;
+  webkit-text-stroke: 3px black;
+  color: white;
+  text-shadow:
+  -2px 0px 0 #000,
+  0px 2px 0 #000,
+  2px 0px 0 #000,
+  0px -2px 0 #000;
+
+  position: relative;
+  top: -200px;
+  width: 60%;
+  text-align:center;
+}
 .image-add-caption {
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-  height: auto;
 }
 
 li {
@@ -123,16 +157,11 @@ li {
 .add-caption {
   margin: 15px;
   text-align: center;
+  width: 50%;
 }
 
 li {
   list-style: none;
-}
-
-.text-box {
-  width: 300px;
-  height: 75px;
-  font-size: 20px;
 }
 
 .error {

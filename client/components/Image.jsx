@@ -17,21 +17,24 @@ function Image (props) {
   const nextImage = isWithinBounds(nextArrayId, props.images) ? props.images[nextArrayId] : null
 
   return (
-    <div className='image-and-nav-buttons-container'>
-      <div className='previous-image'>
+    <div className='image-and-nav-buttons-container container'>
+      <div className='row vertical-align'>
+      <div className='previous-image col-md-2'>
         {prevImage &&
-          <Link to={`/images/${prevImage.id}`}><img src='/previous-image.png' /></Link>
+          <Link to={`/images/${prevImage.id}`}><img className='arrow' src='/previous-image.png' /></Link>
         }
       </div>
-      <div className='image'>
+      <div className='image col-md-8'>
         <img src={url} />
       </div>
-      <div className='next-image'>
+      <div className='next-image col-md-2'>
         {nextImage &&
-          <Link to={`/images/${nextImage.id}`}><img src='/next-image.png' /></Link>
+
+          <Link to={`/images/${nextImage.id}`}><img className='arrow' src='/next-image.png' /></Link>
         }
       </div>
     </div>
+  </div>
   )
 }
 

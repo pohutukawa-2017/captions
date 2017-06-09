@@ -75,4 +75,5 @@
     "webpack-dev-server": "^2.4.5",
     "webpack-livereload-plugin": "^0.11.0"
   }
+
 }
