@@ -66,6 +66,16 @@ ul.menu li {
   align-items: center;
   clear:both;
 }
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-and-nav-buttons-container {
+  display: flex;
+  justify-content: row;
+}
 
 .image {
   display: flex;
@@ -96,6 +106,13 @@ li {
 .login-page {
   display: flex;
   justify-content: center;
+}
+
+.profile-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .add-caption-container {
