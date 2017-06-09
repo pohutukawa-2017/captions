@@ -8,6 +8,7 @@ import singleImage from './getImage'
 import imageUpload from './imageUpload'
 import profile from './profile'
 import error from './error'
+import waiting from './waiting'
 
 export default combineReducers({
   user,
@@ -17,5 +18,6 @@ export default combineReducers({
   singleImage,
   imageUpload,
   profile,
-  error
+  error,
+  waiting
 })

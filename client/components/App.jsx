@@ -2,6 +2,7 @@ import React from 'react'
 
 import AddImage from './AddImage'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 import User from './User'
 import Login from './Login'
@@ -11,14 +12,16 @@ import ImageList from './ImageList'
 import ImageCaption from './ImageCaption'
 import ErrorMessage from './ErrorMessage'
 import ImageContainer from './ImageContainer'
+import WaitingIndicator from './WaitingIndicator'
 import AddCaptionContainer from './AddCaptionContainer'
 
-const App = () => (
+const App = (props) => (
 
   <Router>
     <div className='app'>
       <NavBar />
       <ErrorMessage />
+      {props.waiting && <WaitingIndicator />}
       <Route exact path='/' component={ImageList} />
       <Switch>
         <Route path='/login' component={Login} />
@@ -33,4 +36,9 @@ const App = () => (
   </Router>
 )
 
-export default App
+function mapStateToProps (state) {
+  return {
+    waiting: state.waiting
+  }
+}
+export default connect(mapStateToProps)(App)

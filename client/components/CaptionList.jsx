@@ -7,15 +7,19 @@ function CaptionList (props) {
     props.routerProps.history.push(`/images/${imageId}/add-caption`)
   }
   return (
-    <div className='caption-list'>
-      <button onClick={handleClick}>New Caption</button>
+    <div className='row'>
+      <div className='col-md-2'></div>
+    <div className='caption-list col-md-8'>
+      <button className='btn btn-primary new-caption' onClick={handleClick}>New Caption</button>
       {props.captions.map((item, key) => {
         return (
-          <div key={key}>
-            <CaptionListItem imageId={item.imageId} id={item.id} authorId={item.userId} caption={item.captionText} />
+          <div className='caption' key={key}>
+            <CaptionListItem imageId={item.imageId} id={item.id} caption={item.captionText} />
           </div>
         )
       })}
+    <div className='col-md-2'></div>
+    </div>
     </div>
   )
 }

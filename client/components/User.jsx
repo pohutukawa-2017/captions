@@ -15,7 +15,7 @@ class User extends React.Component {
 
   render () {
     return (
-      <div className='user-page'>
+      <div className='user-page container'>
         <div className='user-form'>
           <h2>{this.props.user.username}</h2>
           <p><img className='user-image' src={this.props.user.profilePic} /></p>

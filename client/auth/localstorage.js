@@ -5,7 +5,7 @@ export function get (key) {
 }
 
 export function set (key, value) {
-  if (value === null) {
+  if (!value) {
     localStorage.removeItem(key)
   } else {
     localStorage.setItem(key, value)

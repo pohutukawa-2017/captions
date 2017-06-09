@@ -19,7 +19,10 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const REGISTER_ERROR = 'REGISTER_ERROR'
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
 export const RECEIVED_IMAGE_ID = 'RECEIVED_IMAGE_ID'
+export const LOG_OUT = 'LOG_OUT'
 export const ERROR_MESSAGE = 'ERROR_MESSAGE'
+export const WAITING_INDICATOR = 'WAITING_INDICATOR'
+export const NOT_WAITING = 'NOT_WAITING'
 
 export function postImage (pictureURL) {
   return (dispatch) => {
@@ -98,6 +101,12 @@ export function loginError (message) {
   }
 }
 
+export function logOut () {
+  return {
+    type: LOG_OUT
+  }
+}
+
 export const imagePath = (image) => {
   return {
     type: 'GET_IMAGE',
@@ -144,6 +153,7 @@ export function error (message) {
 
 export function loginUser (credentials, route, redirect) {
   return (dispatch) => {
+    dispatch(waitingIndicator())
     dispatch(requestLogin())
     return login('post', route, credentials)
       .then((response) => {
@@ -152,6 +162,7 @@ export function loginUser (credentials, route, redirect) {
         } else {
           const userInfo = saveUserToken(response.body.token)
           dispatch(receiveLogin(userInfo))
+          dispatch(notWaiting())
           redirect()
         }
       })
@@ -161,10 +172,12 @@ export function loginUser (credentials, route, redirect) {
 
 export function getUser (userId, route, callback) {
   return (dispatch) => {
+    dispatch(waitingIndicator())
     dispatch(requestUser())
     return login('get', route)
       .then((response) => {
         dispatch(receiveUser(response.body))
+        dispatch(notWaiting())
       })
       .catch((err) => {
         return dispatch(userError(err.response.body.info))
@@ -174,9 +187,11 @@ export function getUser (userId, route, callback) {
 
 export const saveNewCaption = (caption, cb) => {
   return (dispatch) => {
+    dispatch(waitingIndicator())
     postNewCaption(caption.imageId, caption, (err, res) => {
       if (err) return dispatch(error(err.message))
       dispatch(getCaptionsList(caption.imageId))
+      dispatch(notWaiting())
       cb(res.captionId)
     })
   }
@@ -184,11 +199,13 @@ export const saveNewCaption = (caption, cb) => {
 
 export const fetchImages = () => {
   return (dispatch, getState) => {
+    dispatch(waitingIndicator())
     const state = getState()
     if (state.images.length === 0) {
       getAllImages((err, res) => {
         if (err) return dispatch(error(err.message))
         dispatch(receiveImages(res.result))
+        dispatch(notWaiting())
       })
     }
   }
@@ -196,6 +213,7 @@ export const fetchImages = () => {
 
 export const getImagePath = (id) => {
   return (dispatch, getState) => {
+    dispatch(waitingIndicator())
     const state = getState()
     if (!state.singleImage.id || state.singleImage.id !== Number(id)) {
       const image = state.images.find((image) => image.id === Number(id))
@@ -203,9 +221,11 @@ export const getImagePath = (id) => {
         getImageById(id, (err, res) => {
           if (err) return dispatch(error(err.message))
           dispatch(imagePath(res))
+          dispatch(notWaiting())
         })
       } else {
         dispatch(imagePath(image))
+        dispatch(notWaiting())
       }
     }
   }
@@ -213,11 +233,13 @@ export const getImagePath = (id) => {
 
 export const getCaptionsList = (id) => {
   return (dispatch, getState) => {
+    dispatch(waitingIndicator())
     const state = getState()
     if (state.captions.length === 0 || state.singleImage.id !== id) {
       getCaptionsById(id, (err, res) => {
         if (err) return dispatch(error(err.message))
         dispatch(captions(res))
+        dispatch(notWaiting())
       })
     }
   }
@@ -225,11 +247,13 @@ export const getCaptionsList = (id) => {
 
 export const deleteCaption = (id, imageId) => {
   return (dispatch) => {
+    dispatch(waitingIndicator())
     removeCaption(id, (err, res) => {
       if (err) dispatch(error(err.message))
       getCaptionsById(imageId, (err, res) => {
         if (err) dispatch(error(err.message))
         dispatch(captions(res))
+        dispatch(notWaiting())
       })
     })
   }
@@ -239,5 +263,17 @@ export const getNextImage = (id) => {
   return {
     type: 'GET_NEXT_IMAGE',
     id
+  }
+}
+
+export const waitingIndicator = () => {
+  return {
+    type: WAITING_INDICATOR
+  }
+}
+
+export const notWaiting = () => {
+  return {
+    type: NOT_WAITING
   }
 }
