@@ -10,6 +10,8 @@ const Navbar = (props) => {
     <div className='navbar-container'>
       <div className='site-name'> <a href='/'><h1>Captions</h1></a></div>
       <div className='site-menu'>
+        {props.auth.isAuthenticated && (<a href='/images/add'>Add image</a>)}
+        {!props.auth.isAuthenticated && (<a href='/login'>Add image</a>)}
         <ul className='menu'>
           {!props.auth.isAuthenticated && (<li><a href='/register'>Register</a></li>)}
           {!props.auth.isAuthenticated && (<li><a href='/login'>Sign in</a></li>)}

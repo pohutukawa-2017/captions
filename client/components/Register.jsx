@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Dropzone from 'react-dropzone'
 
 import {loginUser, loginError} from '../actions'
-import ErrorMessage from './ErrorMessage'
-import {registerUrl} from '../api'
+import {registerUrl, uploadImage} from '../api'
 
 class Register extends React.Component {
   constructor (props) {
@@ -12,11 +12,14 @@ class Register extends React.Component {
       username: '',
       password: '',
       confirm: '',
-      profilePic: ''
+      profilePic: '',
+      displayUpload: true,
+      imageUploading: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.redirectToHomepage = this.redirectToHomepage.bind(this)
+    this.handleImageDrop = this.handleImageDrop.bind(this)
   }
 
   handleChange (e) {
@@ -41,6 +44,18 @@ class Register extends React.Component {
     this.props.history.push('/')
   }
 
+  handleImageDrop (files) {
+    this.setState({imageUploading: true})
+    uploadImage(files[0], (err, res) => {
+      if (err) return this.props.imageError(err.message)
+      this.setState({
+        profilePic: res,
+        displayUpload: false,
+        imageUploading: false
+      })
+    })
+  }
+
   render () {
     return (
       <div className='login-page'>
@@ -49,11 +64,22 @@ class Register extends React.Component {
           <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
           <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
           <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
-          <p><input name='profilePic' onChange={this.handleChange} placeholder='Profile Pic Url' /></p>
-          <p><button onClick={this.handleClick}>Register</button></p>
-          <div className='error-message'>
-            <ErrorMessage />
-          </div>
+          {this.state.displayUpload &&
+          <Dropzone
+            multiple={false}
+            accept="image/*"
+            onDrop={this.handleImageDrop}>
+            <p>Drop an image or click to select a file to upload.</p>
+          </Dropzone>}
+
+          {this.state.profilePic &&
+          <div>
+            <h4>Upload Successful</h4>
+            <img src={this.state.profilePic} />
+          </div>}
+
+          <p><button onClick={this.handleClick} disabled={this.state.imageUploading}>Register</button></p>
+
         </div>
       </div>
     )
@@ -63,7 +89,8 @@ class Register extends React.Component {
 function mapDispatchToProps (dispatch) {
   return {
     loginUser: (userInfo, route, redirect) => dispatch(loginUser(userInfo, route, redirect)),
-    loginError: (message) => dispatch(loginError(message))
+    loginError: (authMessage) => dispatch(loginError(authMessage)),
+    imageError: (error) => dispatch(error(error))
   }
 }
 

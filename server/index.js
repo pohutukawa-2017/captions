@@ -1,5 +1,6 @@
-const createServer = require('./server')
+require('dotenv').config()
 
+const createServer = require('./server')
 const environment = process.env.NODE_ENV || 'development'
 const config = require('../knexfile')[environment]
 const connection = require('knex')(config)

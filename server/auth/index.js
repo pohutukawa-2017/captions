@@ -7,7 +7,7 @@ const db = require('../db')
 const crypto = require('./crypto')
 
 function issueJwt (user, res) {
-  const token = createToken(user, process.env.JWT_SECRET || 'this is our awesome secret')
+  const token = createToken(user, process.env.JWT_SECRET)
   res.json({
     message: 'Authentication successful.',
     token
@@ -24,11 +24,21 @@ function createToken (user, secret) {
   })
 }
 
+function handleError (err, req, res, next) {
+  if (err) {
+    return res.status(403).json({
+      message: 'Access to this resource was denied.',
+      info: err.message
+    })
+  }
+  next()
+}
+
 function verify (req, res, callback) {
   const username = req.body.username
   const password = req.body.password
   db.getUserByName(username, connection)
-    .then(users => {
+    .then((users) => {
       if (users.length === 0) {
         return res.status(403).json({
           message: 'Authentication failed',
@@ -61,9 +71,13 @@ function register (req, res, callback) {
     })
   }
   const passwordHash = crypto.getHash(req.body.password)
-  const user = {username: req.body.username, password_hash: passwordHash, profile_pic: req.body.profilePic}
+  const user = {
+    username: req.body.username,
+    password_hash: passwordHash,
+    profile_pic: req.body.profilePic || '/default-profile-pic.png'
+  }
   db.getUserByName(user.username, connection)
-    .then(users => {
+    .then((users) => {
       if (users.length !== 0) {
         return res.status(403).json({
           message: 'Registration failed',
@@ -85,5 +99,6 @@ function register (req, res, callback) {
 module.exports = {
   verify,
   issueJwt,
-  register
+  register,
+  handleError
 }

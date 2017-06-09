@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getImageById} from '../api'
-import {imagePath} from '../actions'
+import {imagePath, error} from '../actions'
 import AddCaption from './AddCaption'
 
 class AddCaptionContainer extends React.Component {
@@ -9,7 +9,7 @@ class AddCaptionContainer extends React.Component {
   componentDidMount () {
     const id = Number(this.props.match.params.id)
     getImageById(id, (err, res) => {
-      if (err) return console.log(err) // TODO: Error component
+      if (err) return this.props.dispatch(error(err.message))
       this.props.dispatch(imagePath(res))
     })
   }

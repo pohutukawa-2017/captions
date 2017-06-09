@@ -13,11 +13,12 @@ export const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
 export const PROFILE_FAILURE = 'PROFILE_FAILURE'
 export const RECEIVED_IMAGE_ID = 'RECEIVED_IMAGE_ID'
 export const LOG_OUT = 'LOG_OUT'
+export const ERROR_MESSAGE = 'ERROR_MESSAGE'
 
 export function postImage (pictureURL) {
   return (dispatch) => {
     postNewImage(pictureURL, (err, res) => {
-      if (err) return console.log(err)
+      if (err) dispatch(error(err.message))
       dispatch(receivedImageId(res.id[0]))
     })
   }
@@ -32,10 +33,21 @@ export function receivedImageId (id) {
 
 export function uploadImage () {
   return function (dispatch) {
-    cloudinary.openUploadWidget({cloud_name: 'dboovyrqb', upload_preset: 'p8w4fgph', tags: ['test']},
-      (error, result) => {
+    cloudinary.openUploadWidget({
+      cloud_name: 'dboovyrqb',
+      upload_preset: 'p8w4fgph',
+      tags: ['test'],
+      cropping: 'server',
+      cropping_aspect_ratio: 1,
+      cropping_default_selection_ratio: 1,
+      theme: 'minimal',
+      min_image_width: 400,
+      min_image_height: 400,
+      cropping_validate_dimensions: true
+    },
+      (err, result) => {
         dispatch(postImage(result[0].url))
-        // Todo handle error
+        if (err) return dispatch(error(err.message))
       }
     )
   }
@@ -123,6 +135,13 @@ export function profileError (message) {
   }
 }
 
+export function error (message) {
+  return {
+    type: ERROR_MESSAGE,
+    errorMessage: message
+  }
+}
+
 export function loginUser (credentials, route, redirect) {
   return (dispatch) => {
     dispatch(requestLogin())
@@ -155,8 +174,8 @@ export function getProfile (profileId, route, callback) {
 
 export const saveNewCaption = (caption, cb) => {
   return (dispatch) => {
-    postNewCaption(caption.imageId, {text: caption.text}, (err, res) => {
-      if (err) return console.log(err) // TODO: Error component
+    postNewCaption(caption.imageId, caption, (err, res) => {
+      if (err) return dispatch(error(err.message))
       dispatch(getCaptionsList(caption.imageId))
       cb(res.captionId)
     })
@@ -168,7 +187,7 @@ export const fetchImages = () => {
     const state = getState()
     if (state.images.length === 0) {
       getAllImages((err, res) => {
-        if (err) return console.log(err)
+        if (err) return dispatch(error(err.message))
         dispatch(receiveImages(res.result))
       })
     }
@@ -182,7 +201,7 @@ export const getImagePath = (id) => {
       const image = state.images.find((image) => image.id === Number(id))
       if (!image) {
         getImageById(id, (err, res) => {
-          if (err) return console.log(err) // TODO: Error component
+          if (err) return dispatch(error(err.message))
           dispatch(imagePath(res))
         })
       } else {
@@ -197,7 +216,7 @@ export const getCaptionsList = (id) => {
     const state = getState()
     if (state.captions.length === 0 || state.singleImage.id !== id) {
       getCaptionsById(id, (err, res) => {
-        if (err) return console.log(err) // TODO: Error component
+        if (err) return dispatch(error(err.message))
         dispatch(captions(res))
       })
     }
@@ -207,9 +226,9 @@ export const getCaptionsList = (id) => {
 export const deleteCaption = (id, imageId) => {
   return (dispatch) => {
     removeCaption(id, (err, res) => {
-      if (err) return console.log(err)
+      if (err) dispatch(error(err.message))
       getCaptionsById(imageId, (err, res) => {
-        if (err) return console.log(err) // TODO: Error component
+        if (err) dispatch(error(err.message))
         dispatch(captions(res))
       })
     })

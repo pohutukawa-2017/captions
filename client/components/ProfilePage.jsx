@@ -19,12 +19,12 @@ class ProfilePage extends React.Component {
         <div className='profile-form'>
           <h2>Profile Page</h2>
           <p>Username: {this.props.profile.username}</p>
-          <p><img className='image' src={this.props.profile.profilePic} /></p>
+          <p><img className='profile-image' src={this.props.profile.profilePic} /></p>
           <h3>Images</h3>
           <div className='profile-image-container'>
             {this.props.profile.images.map((image) => {
               return (
-                <div className='image-wrapper'>
+                <div key={image.id} className='image-wrapper'>
                   <div className='image-thumbnail-container'>
                     <Link to={`/images/${image.id}`}>
                       <img src={image.path} />
