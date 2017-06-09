@@ -1,7 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {
+  ShareButtons,
+  generateShareIcon
+} from 'react-share'
 import {getImagePath, getCaptionsList} from '../actions/'
+
+const {FacebookShareButton, RedditShareButton} = ShareButtons
+const FacebookIcon = generateShareIcon('facebook')
+const RedditIcon = generateShareIcon('reddit')
+const currentUrl = window.location.href
 
 class ImageCaption extends React.Component {
   componentDidMount () {
@@ -16,6 +25,16 @@ class ImageCaption extends React.Component {
         <Link to={`/images/${this.props.image.id}`}>
           <img className='image-caption-image' src={this.props.image.path} /></Link>
         <p>{this.props.caption.captionText}</p>
+        <FacebookShareButton
+          url={currentUrl}>
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+        <RedditShareButton
+          url={currentUrl}
+          windowWidth={660}
+          windowHeight={460}>
+          <RedditIcon size={32} round />
+        </RedditShareButton>
       </div>
     )
   }
