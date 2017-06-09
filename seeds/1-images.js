@@ -5,12 +5,12 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('images').insert([
-        {id: 1, user_id: 1, path: 'https://www.sitebuilderreport.com/assets/facebook-stock-up-446fff24fb11820517c520c4a5a4c032.jpg'},
-        {id: 2, user_id: 1, path: 'https://www.bigstockphoto.com/images/homepage/2016_bigstock_picks.jpg'},
-        {id: 3, user_id: 3, path: 'http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg'},
-        {id: 4, user_id: 1, path: 'http://stories.barkpost.com/wp-content/uploads/2014/05/dogs-allowed-cute-dog.jpg'},
-        {id: 5, user_id: 2, path: 'https://i.ytimg.com/vi/f-e9hSUSlSM/maxresdefault.jpg'},
-        {id: 6, user_id: 3, path: 'http://beforeitsnews.com/contributor/upload/486248/images/cat-funny-5.jpg'}
+        {id: 1, user_id: 1, path: 'http://res.cloudinary.com/dboovyrqb/image/upload/v1496983983/ryzz6g5j2wa5jbwlsiu2.jpg'},
+        {id: 2, user_id: 1, path: 'http://res.cloudinary.com/dboovyrqb/image/upload/v1496983942/e0teccqw5nuqdolidyr3.jpg'},
+        {id: 3, user_id: 3, path: 'http://res.cloudinary.com/dboovyrqb/image/upload/v1496964980/btij0pgx4sr5fbl0ie6p.jpg'},
+        {id: 4, user_id: 1, path: 'http://res.cloudinary.com/dboovyrqb/image/upload/v1496904248/pexels-photo-401107_pllayf.jpg'},
+        {id: 5, user_id: 2, path: 'http://res.cloudinary.com/dboovyrqb/image/upload/v1496963012/qrhk4loes3ied656csys.jpg'},
+        {id: 6, user_id: 3, path: 'http://res.cloudinary.com/dboovyrqb/image/upload/v1496788072/sample.jpg'}
       ])
     })
 }
