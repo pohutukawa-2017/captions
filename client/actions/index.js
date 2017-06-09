@@ -1,6 +1,16 @@
-import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, login, postNewImage} from '../api'
+import {
+  login,
+  getAllImages,
+  getImageById,
+  getCaptionsById,
+  postNewCaption,
+  removeCaption,
+  postNewImage} from '../api'
 import {saveUserToken} from '../auth'
 
+export const REQUEST_USER = 'REQUEST_USER'
+export const RECEIVE_USER = 'RECEIVE_USER'
+export const USER_FAILURE = 'USER_FAILURE'
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
 export const RECEIVE_IMAGES = 'RECEIVE_IMAGES'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
@@ -8,9 +18,6 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const REGISTER_ERROR = 'REGISTER_ERROR'
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
-export const REQUEST_PROFILE = 'REQUEST_PROFILE'
-export const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
-export const PROFILE_FAILURE = 'PROFILE_FAILURE'
 export const RECEIVED_IMAGE_ID = 'RECEIVED_IMAGE_ID'
 
 export function postImage (pictureURL) {
@@ -93,24 +100,24 @@ export const captions = (captions) => {
   }
 }
 
-export function requestProfile () {
+export function requestUser () {
   return {
-    type: REQUEST_PROFILE,
+    type: REQUEST_USER,
     isFetching: true
   }
 }
 
-export function receiveProfile (profile) {
+export function receiveUser (user) {
   return {
-    type: RECEIVE_PROFILE,
+    type: RECEIVE_USER,
     isFetching: false,
-    profile
+    user
   }
 }
 
-export function profileError (message) {
+export function userError (message) {
   return {
-    type: PROFILE_FAILURE,
+    type: USER_FAILURE,
     isFetching: false,
     errorMessage: message
   }
@@ -133,15 +140,15 @@ export function loginUser (credentials, route, redirect) {
   }
 }
 
-export function getProfile (profileId, route, callback) {
+export function getUser (userId, route, callback) {
   return (dispatch) => {
-    dispatch(requestProfile())
+    dispatch(requestUser())
     return login('get', route)
       .then((response) => {
-        dispatch(receiveProfile(response.body))
+        dispatch(receiveUser(response.body))
       })
       .catch((err) => {
-        return dispatch(profileError(err.response.body.info))
+        return dispatch(userError(err.response.body.info))
       })
   }
 }

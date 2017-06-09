@@ -2,29 +2,28 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {getProfile} from '../actions'
+import {getUser} from '../actions'
 import ErrorMessage from './ErrorMessage'
 
-class ProfilePage extends React.Component {
+class User extends React.Component {
   componentDidMount () {
     const userId = Number(this.props.match.params.id)
-    if (this.props.profile.id !== userId) {
-      this.props.getProfile(userId, `/profile/${userId}`)
+    if (this.props.user.id !== userId) {
+      this.props.getUser(userId, `/users/${userId}`)
     }
   }
 
   render () {
     return (
-      <div className='profile-page'>
-        <div className='profile-form'>
-          <h2>Profile Page</h2>
-          <p>Username: {this.props.profile.username}</p>
-          <p><img className='profile-image' src={this.props.profile.profilePic} /></p>
+      <div className='user-page'>
+        <div className='user-form'>
+          <h2>{this.props.user.username}</h2>
+          <p><img className='user-image' src={this.props.user.profilePic} /></p>
           <h3>Images</h3>
-          <div className='profile-image-container'>
-            {this.props.profile.images.map((image) => {
+          <div className='user-image-container'>
+            {this.props.user.images.map((image) => {
               return (
-                <div className='image-wrapper'>
+                <div className='image-wrapper' key={image.id}>
                   <div className='image-thumbnail-container'>
                     <Link to={`/images/${image.id}`}>
                       <img src={image.path} />
@@ -45,14 +44,14 @@ class ProfilePage extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    profile: state.profile
+    user: state.user
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    getProfile: (profileId, route, callback) => dispatch(getProfile(profileId, route, callback))
+    getUser: (userId, route, callback) => dispatch(getUser(userId, route, callback))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
+export default connect(mapStateToProps, mapDispatchToProps)(User)

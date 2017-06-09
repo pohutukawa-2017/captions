@@ -42,7 +42,7 @@ router.post('/captions/:imageId', (req, res) => {
 router.post('/images', (req, res) => {
   const connection = req.app.get('db')
   db.postImage(req.body.path, connection)
-  .then(data => {
+  .then((data) => {
     res.json({id: data})
   })
 })
@@ -66,7 +66,7 @@ router.post('/register', (req, res) => {
   auth.register(req, res, auth.issueJwt)
 })
 
-router.get('/profile/:id', (req, res) => {
+router.get('/users/:id', (req, res) => {
   const connection = req.app.get('db')
   const id = Number(req.params.id)
   db.getUser(id, connection)
@@ -74,7 +74,7 @@ router.get('/profile/:id', (req, res) => {
       const result = {
         username: results[0].username,
         profilePic: results[0].profile_pic,
-        images: results.map(image => {
+        images: results.map((image) => {
           return {id: image.id, path: image.path}
         })
       }
