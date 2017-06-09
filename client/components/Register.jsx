@@ -14,7 +14,8 @@ class Register extends React.Component {
       password: '',
       confirm: '',
       profilePic: '',
-      displayUpload: true
+      displayUpload: true,
+      imageUploading: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -45,14 +46,13 @@ class Register extends React.Component {
   }
 
   handleImageDrop (files) {
-    this.setState({
-      uploadedFile: files[0]
-    })
+    this.setState({imageUploading: true})
     uploadImage(files[0], (err, res) => {
       if (err) return console.log(err) // TODO: handle error
       this.setState({
         profilePic: res,
-        displayUpload: false
+        displayUpload: false,
+        imageUploading: false
       })
     })
   }
@@ -65,23 +65,27 @@ class Register extends React.Component {
           <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
           <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
           <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
-          {this.state.displayUpload && <Dropzone
+          {this.state.displayUpload &&
+          <Dropzone
             multiple={false}
             accept="image/*"
             onDrop={this.handleImageDrop}>
             <p>Drop an image or click to select a file to upload.</p>
-            </Dropzone>}
-            {this.state.profilePic &&
-              <div>
-                <h4>Upload Successful</h4>
-                <img src={this.state.profilePic} width="175" />
-              </div>}
-              <p><button onClick={this.handleClick}>Register</button></p>
-            <div className='error-message'>
-              <ErrorMessage />
-            </div>
+          </Dropzone>}
+
+          {this.state.profilePic &&
+          <div>
+            <h4>Upload Successful</h4>
+            <img src={this.state.profilePic} width="175" />
+          </div>}
+
+          <p><button onClick={this.handleClick} disabled={this.state.imageUploading}>Register</button></p>
+
+          <div className='error-message'>
+            <ErrorMessage />
           </div>
         </div>
+      </div>
     )
   }
 }
