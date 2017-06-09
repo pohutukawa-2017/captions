@@ -38,7 +38,7 @@ const App = (props) => (
 
 function mapStateToProps (state) {
   return {
-    waiting: state.waitingIndicator.waiting
+    waiting: state.waiting
   }
 }
 export default connect(mapStateToProps)(App)

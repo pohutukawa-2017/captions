@@ -42,7 +42,7 @@ class AddCaption extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    waiting: state.waitingIndicator.waiting
+    waiting: state.waiting
   }
 }
 
