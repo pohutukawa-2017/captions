@@ -60,7 +60,6 @@ function getImageById (id, conn) {
 }
 
 function postNewCaption (data, imageId, conn) {
-  console.log(data)
   return conn('captions')
   .insert({
     image_id: imageId,
