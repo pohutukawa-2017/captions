@@ -22,7 +22,7 @@ class ProfilePage extends React.Component {
           <p><img className='image' src={this.props.profile.profilePic} /></p>
           <h3>Images</h3>
           <div className='profile-image-container'>
-            {this.props.profile.images.map(image => {
+            {this.props.profile.images.map((image) => {
               return (
                 <div className='image-wrapper'>
                   <div className='image-thumbnail-container'>
