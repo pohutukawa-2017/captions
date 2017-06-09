@@ -137,7 +137,7 @@ export function error (message) {
   }
 }
 
-export function loginUser (credentials, route, redirect) { 
+export function loginUser (credentials, route, redirect) {
   return (dispatch) => {
     dispatch(waitingIndicator())
     dispatch(requestLogin())
