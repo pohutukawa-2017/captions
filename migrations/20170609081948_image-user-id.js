@@ -1,6 +1,6 @@
 exports.up = function (knex, Promise) {
   return knex.schema.table('images', (table) => {
-    table.integer('user_id')
+    table.integer('user_id').references('users.id')
   })
 }
 

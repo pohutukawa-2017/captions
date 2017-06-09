@@ -19,7 +19,7 @@ class ProfilePage extends React.Component {
         <div className='profile-form'>
           <h2>Profile Page</h2>
           <p>Username: {this.props.profile.username}</p>
-          <p><img className='image' src={this.props.profile.profilePic} /></p>
+          <p><img className='profile-image' src={this.props.profile.profilePic} width="200"/></p>
           <h3>Images</h3>
           <div className='profile-image-container'>
             {this.props.profile.images.map(image => {
