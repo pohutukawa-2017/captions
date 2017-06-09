@@ -134,3 +134,8 @@ li {
   height: 75px;
   font-size: 20px;
 }
+
+.error {
+  color:red;
+  text-align: center;
+}
