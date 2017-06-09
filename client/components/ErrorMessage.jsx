@@ -3,13 +3,17 @@ import {connect} from 'react-redux'
 
 const ErrorMessage = (props) => {
   return (
-    <p>{props.message}</p>
+    <div>
+      <p className='error'>{props.message}</p>
+      <p className='error'>{props.authMessage}</p>
+    </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    message: state.auth.errorMessage
+    message: state.error,
+    authMessage: state.auth.errorMessage
   }
 }
 
