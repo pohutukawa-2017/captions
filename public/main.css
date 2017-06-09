@@ -3,16 +3,15 @@ body {
   color: #333333;
 }
 
-.navbar-container {
+nav.navbar-default {
   background-color: #ffffff;
   border-bottom: 1px solid #eee;
-  padding: 10px;
   margin-bottom:40px;
 }
-
-.navbar-container img.site-logo {
+.navbar-header img {
  width: 40%;
 }
+.navbar-container
 
 navbar-container .site-menu {
   text-align:right;
