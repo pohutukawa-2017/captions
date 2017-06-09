@@ -9,6 +9,7 @@ import Register from './Register'
 import ImageList from './ImageList'
 import ProfilePage from './ProfilePage'
 import ImageCaption from './ImageCaption'
+import ErrorMessage from './ErrorMessage'
 import ImageContainer from './ImageContainer'
 import AddCaptionContainer from './AddCaptionContainer'
 
@@ -17,6 +18,7 @@ const App = () => (
   <Router>
     <div className='app'>
       <NavBar />
+      <ErrorMessage />
       <Route exact path='/' component={ImageList} />
       <Switch>
         <Route path='/login' component={Login} />
