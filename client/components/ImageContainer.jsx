@@ -13,7 +13,7 @@ class ImageContainer extends React.Component {
 
   render () {
     return (
-      <div className='image-container'>
+      <div className='image-container container'>
         <Image imgUrl={this.props.image} />
         <CaptionList captions={this.props.captions} routerProps={this.props} />
       </div>

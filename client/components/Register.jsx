@@ -46,11 +46,11 @@ class Register extends React.Component {
       <div className='login-page'>
         <div>
           <h2>Register an Account</h2>
-          <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
-          <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
-          <p><input type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
-          <p><input name='profilePic' onChange={this.handleChange} placeholder='Profile Pic Url' /></p>
-          <p><button onClick={this.handleClick}>Register</button></p>
+          <p><input className='form-control' name='username' onChange={this.handleChange} placeholder='Username' /></p>
+          <p><input className='form-control' type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
+          <p><input className='form-control' type='password' name='confirm' onChange={this.handleChange} placeholder='Confirm Password' /></p>
+          <p><input className='form-control' name='profilePic' onChange={this.handleChange} placeholder='Profile Pic Url' /></p>
+          <p><button className='btn btn-primary' onClick={this.handleClick}>Register</button></p>
           <div className='error-message'>
             <ErrorMessage />
           </div>

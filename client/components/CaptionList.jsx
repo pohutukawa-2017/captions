@@ -8,7 +8,7 @@ function CaptionList (props) {
   }
   return (
     <div className='caption-list'>
-      <button onClick={handleClick}>New Caption</button>
+      <button className='btn btn-primary' onClick={handleClick}>New Caption</button>
       {props.captions.map((item, key) => {
         return (
           <div key={key}>
