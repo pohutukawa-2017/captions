@@ -38,7 +38,18 @@ export function receivedImageId (id) {
 
 export function uploadImage () {
   return function (dispatch) {
-    cloudinary.openUploadWidget({cloud_name: 'dboovyrqb', upload_preset: 'p8w4fgph', tags: ['test']},
+    cloudinary.openUploadWidget({
+      cloud_name: 'dboovyrqb',
+      upload_preset: 'p8w4fgph',
+      tags: ['test'],
+      cropping: 'server',
+      cropping_aspect_ratio: 1,
+      cropping_default_selection_ratio: 1,
+      theme: 'minimal',
+      min_image_width: 400,
+      min_image_height: 400,
+      cropping_validate_dimensions: true
+    },
       (error, result) => {
         dispatch(postImage(result[0].url))
         // Todo handle error
@@ -155,7 +166,7 @@ export function getUser (userId, route, callback) {
 
 export const saveNewCaption = (caption, cb) => {
   return (dispatch) => {
-    postNewCaption(caption.imageId, {text: caption.text}, (err, res) => {
+    postNewCaption(caption.imageId, caption, (err, res) => {
       if (err) return console.log(err) // TODO: Error component
       dispatch(getCaptionsList(caption.imageId))
       cb(res.captionId)

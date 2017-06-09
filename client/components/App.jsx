@@ -24,8 +24,8 @@ const App = () => (
         <Route path='/register' component={Register} />
         <Route path='/images/add' component={AddImage} />
         <Route exact path='/images/:id' component={ImageContainer} />
-        <Route path='/images/:id/:captionid' component={ImageCaption} />
         <Route path='/images/:id/add-caption' component={AddCaptionContainer} />
+        <Route path='/images/:id/:captionid' component={ImageCaption} />
       </Switch>
     </div>
   </Router>

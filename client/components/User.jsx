@@ -23,7 +23,7 @@ class User extends React.Component {
           <div className='user-image-container'>
             {this.props.user.images.map((image) => {
               return (
-                <div className='image-wrapper' key={image.id}>
+                <div key={image.id} className='image-wrapper'>
                   <div className='image-thumbnail-container'>
                     <Link to={`/images/${image.id}`}>
                       <img src={image.path} />
