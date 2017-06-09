@@ -3,7 +3,7 @@ import React from 'react'
 import AddImage from './AddImage'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-import NavBar from './NavBar'
+import NavBar from './Navbar'
 import ImageList from './ImageList'
 import AddCaptionContainer from './AddCaptionContainer'
 import ImageCaption from './ImageCaption'
