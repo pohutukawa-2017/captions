@@ -37,7 +37,7 @@ function getUser (userId, connection) {
   return connection('users')
     .join('images', 'users.id', 'images.user_id')
     .where('users.id', userId)
-    .select('users.username', 'users.profile_pic', 'images.*')
+    .select('users.id as userId', 'users.username', 'users.profile_pic', 'images.*')
 }
 
 function getCaptionsById (id, conn) {
@@ -52,18 +52,20 @@ function getImageById (id, conn) {
   .where('id', id)
 }
 
-function postNewCaption (text, imageId, conn) {
+function postNewCaption (data, imageId, conn) {
   return conn('captions')
   .insert({
     image_id: imageId,
-    caption_text: text
+    caption_text: data.text,
+    user_id: data.userId
   })
 }
 
-function postImage (path, conn) {
+function postImage (image, conn) {
   return conn('images')
   .insert({
-    path: path
+    path: image.path,
+    user_id: image.userId
   })
 }
 

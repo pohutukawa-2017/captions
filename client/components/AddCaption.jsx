@@ -7,7 +7,8 @@ class AddCaption extends React.Component {
     super(props)
     this.state = {
       imageId: this.props.routerProps.match.params.id,
-      text: ''
+      text: '',
+      userId: this.props.userId
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -38,4 +39,10 @@ class AddCaption extends React.Component {
   }
 }
 
-export default connect()(AddCaption)
+function mapStateToProps (state) {
+  return {
+    userId: state.auth.user.id
+  }
+}
+
+export default connect(mapStateToProps)(AddCaption)

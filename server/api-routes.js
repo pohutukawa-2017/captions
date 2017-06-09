@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const verifyJWT = require('express-jwt')
 
 const db = require('./db')
 const auth = require('./auth')
@@ -31,22 +32,6 @@ router.get('/captions/:imageId', (req, res) => {
   })
 })
 
-router.post('/captions/:imageId', (req, res) => {
-  const connection = req.app.get('db')
-  db.postNewCaption(req.body.text, Number(req.params.imageId), connection)
-  .then((data) => {
-    res.json({captionId: data[0]})
-  })
-})
-
-router.post('/images', (req, res) => {
-  const connection = req.app.get('db')
-  db.postImage(req.body.path, connection)
-  .then(data => {
-    res.json({id: data})
-  })
-})
-
 router.delete('/captions/:id', (req, res) => {
   const connection = req.app.get('db')
   const id = Number(req.params.id)
@@ -72,6 +57,7 @@ router.get('/profile/:id', (req, res) => {
   db.getUser(id, connection)
     .then((results) => {
       const result = {
+        id: results[0].userId,
         username: results[0].username,
         profilePic: results[0].profile_pic,
         images: results.map(image => {
@@ -80,6 +66,34 @@ router.get('/profile/:id', (req, res) => {
       }
       res.json(result)
     })
+})
+
+// Protect all routes beneath this point
+router.use(
+  verifyJWT({
+    secret: process.env.JWT_SECRET
+  }),
+  auth.handleError
+)
+
+router.post('/captions/:imageId', (req, res) => {
+  const connection = req.app.get('db')
+  const caption = req.body
+  caption.userId = req.user.id
+  db.postNewCaption(req.body, Number(req.params.imageId), connection)
+  .then((data) => {
+    res.json({captionId: data[0]})
+  })
+})
+
+router.post('/images', (req, res) => {
+  const connection = req.app.get('db')
+  const image = req.body
+  image.userId = req.user.id
+  db.postImage(image, connection)
+  .then(data => {
+    res.json({id: data})
+  })
 })
 
 module.exports = router

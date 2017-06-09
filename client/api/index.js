@@ -72,9 +72,12 @@ export function getCaptionsById (id, callback) {
 }
 
 export function postNewCaption (imageId, text, cb) {
-  consume('post', `/captions/${imageId}`, text)
-  .then((err, res) => {
-    cb(err, res.body)
+  login('post', `/captions/${imageId}`, text)
+  .then((res) => {
+    cb(null, res.body)
+  })
+  .catch((err) => {
+    return cb(err)
   })
 }
 
