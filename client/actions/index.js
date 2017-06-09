@@ -1,4 +1,4 @@
-import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, request} from '../api'
+import {getAllImages, getImageById, getCaptionsById, postNewCaption, removeCaption, login, postNewImage} from '../api'
 import {saveUserToken} from '../auth'
 
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
@@ -8,6 +8,37 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const REGISTER_ERROR = 'REGISTER_ERROR'
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
+export const REQUEST_PROFILE = 'REQUEST_PROFILE'
+export const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
+export const PROFILE_FAILURE = 'PROFILE_FAILURE'
+export const RECEIVED_IMAGE_ID = 'RECEIVED_IMAGE_ID'
+
+export function postImage (pictureURL) {
+  return (dispatch) => {
+    postNewImage(pictureURL, (err, res) => {
+      if (err) return console.log(err)
+      dispatch(receivedImageId(res.id[0]))
+    })
+  }
+}
+
+export function receivedImageId (id) {
+  return {
+    type: RECEIVED_IMAGE_ID,
+    id
+  }
+}
+
+export function uploadImage () {
+  return function (dispatch) {
+    cloudinary.openUploadWidget({cloud_name: 'dboovyrqb', upload_preset: 'p8w4fgph', tags: ['test']},
+      (error, result) => {
+        dispatch(postImage(result[0].url))
+        // Todo handle error
+      }
+    )
+  }
+}
 
 export const requestImages = () => {
   return {
@@ -59,14 +90,36 @@ export const captions = (captions) => {
   return {
     type: 'GET_CAPTIONS',
     captions
-
   }
 }
 
-export function loginUser (loginInfo, route, redirect) {
+export function requestProfile () {
+  return {
+    type: REQUEST_PROFILE,
+    isFetching: true
+  }
+}
+
+export function receiveProfile (profile) {
+  return {
+    type: RECEIVE_PROFILE,
+    isFetching: false,
+    profile
+  }
+}
+
+export function profileError (message) {
+  return {
+    type: PROFILE_FAILURE,
+    isFetching: false,
+    errorMessage: message
+  }
+}
+
+export function loginUser (credentials, route, redirect) {
   return (dispatch) => {
     dispatch(requestLogin())
-    return request('post', route, loginInfo)
+    return login('post', route, credentials)
       .then((response) => {
         if (!response.body.token) {
           return dispatch(loginError(response.body.info))
@@ -77,6 +130,19 @@ export function loginUser (loginInfo, route, redirect) {
         }
       })
       .catch((err) => dispatch(loginError(err.response.body.info)))
+  }
+}
+
+export function getProfile (profileId, route, callback) {
+  return (dispatch) => {
+    dispatch(requestProfile())
+    return login('get', route)
+      .then((response) => {
+        dispatch(receiveProfile(response.body))
+      })
+      .catch((err) => {
+        return dispatch(profileError(err.response.body.info))
+      })
   }
 }
 

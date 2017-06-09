@@ -39,6 +39,14 @@ router.post('/captions/:imageId', (req, res) => {
   })
 })
 
+router.post('/images', (req, res) => {
+  const connection = req.app.get('db')
+  db.postImage(req.body.path, connection)
+  .then(data => {
+    res.json({id: data})
+  })
+})
+
 router.delete('/captions/:id', (req, res) => {
   const connection = req.app.get('db')
   const id = Number(req.params.id)
@@ -56,6 +64,22 @@ router.post('/authenticate', (req, res) => {
 
 router.post('/register', (req, res) => {
   auth.register(req, res, auth.issueJwt)
+})
+
+router.get('/profile/:id', (req, res) => {
+  const connection = req.app.get('db')
+  const id = Number(req.params.id)
+  db.getUser(id, connection)
+    .then((results) => {
+      const result = {
+        username: results[0].username,
+        profilePic: results[0].profile_pic,
+        images: results.map(image => {
+          return {id: image.id, path: image.path}
+        })
+      }
+      res.json(result)
+    })
 })
 
 module.exports = router
