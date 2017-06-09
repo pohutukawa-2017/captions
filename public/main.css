@@ -10,7 +10,7 @@ nav.navbar-default {
 }
 
 .navbar-header img {
- width: 40%;
+  width: 40%;
 }
 .navbar-container
 
@@ -72,7 +72,7 @@ ul.navbar-nav li a {
   flex-direction: row;
 }
 .previous-image, .next-image {
-text-align: center;
+  text-align: center;
 }
 .arrow {
   width:60%;
@@ -117,15 +117,15 @@ text-align: center;
   webkit-text-stroke: 3px black;
   color: white;
   text-shadow:
-     -2px 0px 0 #000,
-     0px 2px 0 #000,
-     2px 0px 0 #000,
-     0px -2px 0 #000;
+  -2px 0px 0 #000,
+  0px 2px 0 #000,
+  2px 0px 0 #000,
+  0px -2px 0 #000;
 
-   position: relative;
-top: -200px;
-width: 60%;
-text-align:center;
+  position: relative;
+  top: -200px;
+  width: 60%;
+  text-align:center;
 }
 .image-add-caption {
 }
@@ -163,17 +163,8 @@ li {
 li {
   list-style: none;
 }
-<<<<<<< HEAD
-=======
-
-.text-box {
-  width: 300px;
-  height: 75px;
-  font-size: 20px;
-}
 
 .error {
   color:red;
   text-align: center;
 }
->>>>>>> 6bd03f789a79407240708b2d6855f2e21eaeddf3
