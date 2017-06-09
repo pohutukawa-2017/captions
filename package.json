@@ -43,6 +43,7 @@
     "react-share": "^1.14.1",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "semantic-ui-react": "^0.68.5",
     "sodium": "^2.0.1",
     "superagent": "^2.3.0",
     "webpack": "^2.6.1"
@@ -75,5 +76,4 @@
     "webpack-dev-server": "^2.4.5",
     "webpack-livereload-plugin": "^0.11.0"
   }
-
 }
