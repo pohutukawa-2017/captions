@@ -1,6 +1,7 @@
 import React from 'react'
 import {saveNewCaption} from '../actions'
 import {connect} from 'react-redux'
+import WaitingIndicator from './WaitingIndicator'
 
 class AddCaption extends React.Component {
   constructor (props) {
@@ -33,9 +34,16 @@ class AddCaption extends React.Component {
           <textarea name='text' className='text-box' placeholder='Insert Caption' onChange={this.handleChange} /> <br />
           <button type='submit'>Submit</button>
         </form>
+        {this.props.waiting && <WaitingIndicator />}
       </div>
     )
   }
 }
 
-export default connect()(AddCaption)
+function mapStateToProps (state) {
+  return {
+    waiting: state.waitingIndicator.waiting
+  }
+}
+
+export default connect(mapStateToProps)(AddCaption)

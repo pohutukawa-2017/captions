@@ -7,6 +7,7 @@ import singleImage from './getImage'
 import captions from './getCaptions'
 import profile from './profile'
 import error from './error'
+import waitingIndicator from './waitingIndicator'
 
 export default combineReducers({
   images,
@@ -15,5 +16,7 @@ export default combineReducers({
   auth,
   imageUpload,
   profile,
-  error
+  error,
+  waitingIndicator
+
 })

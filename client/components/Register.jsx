@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Dropzone from 'react-dropzone'
 
+import WaitingIndicator from './WaitingIndicator'
 import {loginUser, loginError} from '../actions'
 import {registerUrl, uploadImage} from '../api'
 
@@ -71,7 +72,7 @@ class Register extends React.Component {
             onDrop={this.handleImageDrop}>
             <p>Drop an image or click to select a file to upload.</p>
           </Dropzone>}
-
+          {this.state.imageUploading && <WaitingIndicator />}
           {this.state.profilePic &&
           <div>
             <h4>Upload Successful</h4>
