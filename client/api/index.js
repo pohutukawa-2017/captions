@@ -26,15 +26,12 @@ export function login (method = 'get', endpoint, data = {}) {
 }
 
 export function postNewImage (pictureURL, callback) {
-  request
-    .post('/api/v1/images')
-    .send({path: pictureURL})
-    .end((err, res) => {
-      if (err) {
-        callback(err)
-      } else {
-        callback(null, res.body)
-      }
+  login('post', `/images`, {path: pictureURL})
+    .then((res) => {
+      callback(null, res.body)
+    })
+    .catch((err) => {
+      return callback(err)
     })
 }
 
@@ -82,12 +79,11 @@ export function postNewCaption (imageId, text, cb) {
 }
 
 export function removeCaption (captionId, callback) {
-  request.delete(`/api/v1/captions/${captionId}`)
-  .end((err, res) => {
-    if (err) {
-      callback(err)
-    } else {
-      callback(null, res.body.id)
-    }
-  })
+  login('delete', `/captions/${captionId}`)
+    .then((res) => {
+      callback(null, res.body)
+    })
+    .catch((err) => {
+      return callback(err)
+    })
 }

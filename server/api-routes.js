@@ -32,17 +32,6 @@ router.get('/captions/:imageId', (req, res) => {
   })
 })
 
-router.delete('/captions/:id', (req, res) => {
-  const connection = req.app.get('db')
-  const id = Number(req.params.id)
-  db.removeCaption(id, connection)
-  .then(() => {
-    res.json({
-      id: Number(req.params.id)
-    })
-  })
-})
-
 router.post('/authenticate', (req, res) => {
   auth.verify(req, res, auth.issueJwt)
 })
@@ -79,7 +68,7 @@ router.use(
 router.post('/captions/:imageId', (req, res) => {
   const connection = req.app.get('db')
   const caption = req.body
-  caption.userId = req.user.id
+  caption.userId = Number(req.user.id)
   db.postNewCaption(req.body, Number(req.params.imageId), connection)
   .then((data) => {
     res.json({captionId: data[0]})
@@ -89,11 +78,32 @@ router.post('/captions/:imageId', (req, res) => {
 router.post('/images', (req, res) => {
   const connection = req.app.get('db')
   const image = req.body
-  image.userId = req.user.id
+  image.userId = Number(req.user.id)
   db.postImage(image, connection)
   .then(data => {
     res.json({id: data})
   })
+})
+
+router.delete('/captions/:id', (req, res) => {
+  const connection = req.app.get('db')
+  const id = Number(req.params.id)
+  const userId = Number(req.user.id)
+  db.getCaptionById(id, connection)
+    .then((data) => {
+      if (data[0].userId !== userId) {
+        return res.status(403).json({
+          message: 'Authentication failed',
+          info: 'You cannot delete comments from other users.'
+        })
+      }
+      db.removeCaption(id, connection)
+        .then(() => {
+          res.json({
+            id: Number(req.params.id)
+          })
+        })
+    })
 })
 
 module.exports = router
