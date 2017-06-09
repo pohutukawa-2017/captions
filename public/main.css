@@ -63,10 +63,13 @@ ul.navbar-nav li a {
 }
 
 .image-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
+}
+.arrow {
+  width:20%;
+}
+.image img {
+  width:100%;
 }
 .profile-image-container {
   display: flex;
@@ -75,12 +78,9 @@ ul.navbar-nav li a {
 }
 
 .image-and-nav-buttons-container {
-  display: flex;
-  justify-content: row;
 }
 
 .image {
-  display: flex;
   justify-content: center;
   height: auto;
 }
