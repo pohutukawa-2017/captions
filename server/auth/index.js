@@ -86,7 +86,10 @@ function register (req, res, callback) {
       }
 
       db.addUser(user, connection)
-        .then(() => callback(user, res))
+        .then((id) => {
+          user.id = id[0]
+          callback(user, res)
+        })
     })
     .catch(() => {
       return res.status(500).json({
