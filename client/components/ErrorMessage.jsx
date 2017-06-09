@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 
 const ErrorMessage = (props) => {
   return (
-    <div>
-      <p className='error'>{props.message}</p>
-      <p className='error'>{props.authMessage}</p>
+    <div className='error'>
+      <p>{props.message}</p>
+      <p>{props.authMessage}</p>
     </div>
   )
 }
