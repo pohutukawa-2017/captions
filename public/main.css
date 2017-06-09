@@ -168,3 +168,7 @@ li {
   color:red;
   text-align: center;
 }
+
+.waiting-indicator {
+  max-width: 170px;
+}
