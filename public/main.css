@@ -163,3 +163,17 @@ li {
 li {
   list-style: none;
 }
+<<<<<<< HEAD
+=======
+
+.text-box {
+  width: 300px;
+  height: 75px;
+  font-size: 20px;
+}
+
+.error {
+  color:red;
+  text-align: center;
+}
+>>>>>>> 6bd03f789a79407240708b2d6855f2e21eaeddf3
