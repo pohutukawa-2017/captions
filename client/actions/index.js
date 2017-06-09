@@ -166,7 +166,7 @@ export function getProfile (profileId, route, callback) {
 }
 
 export const saveNewCaption = (caption, cb) => {
-  return (dispatch) => { 
+  return (dispatch) => {
     postNewCaption(caption.imageId, caption, (err, res) => {
       if (err) return dispatch(error(err.message))
       dispatch(getCaptionsList(caption.imageId))
