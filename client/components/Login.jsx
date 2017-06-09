@@ -39,9 +39,9 @@ class Login extends React.Component {
       <div className='login-page'>
         <div className='login-form'>
           <h2>Login</h2>
-          <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
-          <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
-          <p><button onClick={this.handleClick}>Login</button></p>
+          <p><input className='form-control' name='username' onChange={this.handleChange} placeholder='Username' /></p>
+          <p><input className='form-control' type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
+          <p><button className='btn btrn-primary' onClick={this.handleClick}>Login</button></p>
         </div>
       </div>
     )
