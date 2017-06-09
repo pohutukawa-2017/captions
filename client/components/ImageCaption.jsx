@@ -10,6 +10,7 @@ import {getImagePath, getCaptionsList} from '../actions/'
 const {FacebookShareButton, RedditShareButton} = ShareButtons
 const FacebookIcon = generateShareIcon('facebook')
 const RedditIcon = generateShareIcon('reddit')
+const currentUrl = window.location.href
 
 class ImageCaption extends React.Component {
   componentDidMount () {
@@ -25,11 +26,11 @@ class ImageCaption extends React.Component {
           <img className='image-caption-image' src={this.props.image.path} /></Link>
         <p>{this.props.caption.captionText}</p>
         <FacebookShareButton
-          url={`https://localhost:3000${this.props.match.url}`}>
+          url={currentUrl}>
           <FacebookIcon size={32} round />
         </FacebookShareButton>
         <RedditShareButton
-          url={`https://localhost:3000${this.props.match.url}`}
+          url={currentUrl}
           windowWidth={660}
           windowHeight={460}>
           <RedditIcon size={32} round />
