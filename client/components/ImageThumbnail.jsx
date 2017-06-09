@@ -1,9 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {cropUrl} from '../utils/cloudinary'
 
 const ImageThumbnail = (props) => {
-  const regex = /upload/
-  const url = typeof props.imgUrl === 'string' ? props.imgUrl.replace(regex, '/upload/c_crop,g_custom') : props.imgUrl
+  const url = cropUrl(props.imgUrl)
   return (
     <div className='image-thumbnail-container'>
       <Link to={`/images/${props.id}`}><img src={url} /> </Link>
