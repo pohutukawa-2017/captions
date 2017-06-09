@@ -9,7 +9,8 @@ module.exports = {
   removeCaption,
   addUser,
   getUser,
-  getImagesByUser
+  getImagesByUser,
+  getCaptionById
 }
 
 function getImages (conn) {
@@ -35,15 +36,21 @@ function addUser (user, connection) {
 
 function getUser (userId, connection) {
   return connection('users')
-    .select('users.username', 'users.profile_pic', 'images.*')
+    .select('users.id as userId', 'users.username', 'users.profile_pic', 'images.*')
     .leftJoin('images', 'users.id', 'images.user_id')
     .where('users.id', userId)
 }
 
 function getCaptionsById (id, conn) {
   return conn('captions')
-  .select('id', 'image_id as imageId', 'caption_text as captionText')
+  .select('id', 'image_id as imageId', 'caption_text as captionText', 'user_id as userId')
   .where('image_id', id)
+}
+
+function getCaptionById (id, conn) {
+  return conn('captions')
+  .select('id', 'image_id as imageId', 'caption_text as captionText', 'user_id as userId')
+  .where('id', id)
 }
 
 function getImageById (id, conn) {
@@ -52,18 +59,20 @@ function getImageById (id, conn) {
   .where('id', id)
 }
 
-function postNewCaption (text, imageId, conn) {
+function postNewCaption (data, imageId, conn) {
   return conn('captions')
   .insert({
     image_id: imageId,
-    caption_text: text
+    caption_text: data.text,
+    user_id: data.userId
   })
 }
 
-function postImage (path, conn) {
+function postImage (image, conn) {
   return conn('images')
   .insert({
-    path: path
+    path: image.path,
+    user_id: image.userId
   })
 }
 
