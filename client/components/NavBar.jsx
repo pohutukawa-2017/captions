@@ -37,7 +37,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    logOut: dispatch(logOut())
+    logOut: () => dispatch(logOut())
   }
 }
 
