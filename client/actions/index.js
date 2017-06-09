@@ -12,6 +12,7 @@ export const REQUEST_PROFILE = 'REQUEST_PROFILE'
 export const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
 export const PROFILE_FAILURE = 'PROFILE_FAILURE'
 export const RECEIVED_IMAGE_ID = 'RECEIVED_IMAGE_ID'
+export const LOG_OUT = 'LOG_OUT'
 
 export function postImage (pictureURL) {
   return (dispatch) => {
@@ -76,6 +77,12 @@ export function loginError (message) {
     isFetching: false,
     isAuthenticated: false,
     message
+  }
+}
+
+export function logOut () {
+  return {
+    type: LOG_OUT
   }
 }
 
