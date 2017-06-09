@@ -32,33 +32,6 @@ router.get('/captions/:imageId', (req, res) => {
   })
 })
 
-router.post('/captions/:imageId', (req, res) => {
-  const connection = req.app.get('db')
-  db.postNewCaption(req.body.text, Number(req.params.imageId), connection)
-  .then((data) => {
-    res.json({captionId: data[0]})
-  })
-})
-
-router.post('/images', (req, res) => {
-  const connection = req.app.get('db')
-  db.postImage(req.body.path, connection)
-  .then((data) => {
-    res.json({id: data})
-  })
-})
-
-router.delete('/captions/:id', (req, res) => {
-  const connection = req.app.get('db')
-  const id = Number(req.params.id)
-  db.removeCaption(id, connection)
-  .then(() => {
-    res.json({
-      id: Number(req.params.id)
-    })
-  })
-})
-
 router.post('/authenticate', (req, res) => {
   auth.verify(req, res, auth.issueJwt)
 })
