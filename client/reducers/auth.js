@@ -1,10 +1,10 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_ERROR} from '../actions'
-import {isAuthenticated} from '../auth'
+import {isAuthenticated, getUserTokenInfo} from '../auth'
 
 const initialState = {
   isFetching: false,
   isAuthenticated: isAuthenticated(),
-  user: {username: '', profilePic: '', id: 0},
+  user: getUserTokenInfo(),
   errorMessage: ''
 }
 

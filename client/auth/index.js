@@ -26,7 +26,7 @@ export function saveUserToken (token) {
 
 export function getUserTokenInfo () {
   const token = get('token')
-  return token ? decode(token) : null
+  return token ? decode(token) : {userId: 0, username: '', profilePic: ''}
 }
 
 export function removeUser () {
