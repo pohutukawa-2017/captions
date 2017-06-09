@@ -7,8 +7,7 @@ class AddCaption extends React.Component {
     super(props)
     this.state = {
       imageId: this.props.routerProps.match.params.id,
-      text: '',
-      userId: this.props.userId
+      text: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
