@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import Dropzone from 'react-dropzone'
 
 import {loginUser, loginError} from '../actions'
-import ErrorMessage from './ErrorMessage'
 import {registerUrl, uploadImage} from '../api'
 
 class Register extends React.Component {
@@ -48,7 +47,7 @@ class Register extends React.Component {
   handleImageDrop (files) {
     this.setState({imageUploading: true})
     uploadImage(files[0], (err, res) => {
-      if (err) return console.log(err) // TODO: handle error
+      if (err) return this.props.imageError(err.message)
       this.setState({
         profilePic: res,
         displayUpload: false,
@@ -81,9 +80,6 @@ class Register extends React.Component {
 
           <p><button onClick={this.handleClick} disabled={this.state.imageUploading}>Register</button></p>
 
-          <div className='error-message'>
-            <ErrorMessage />
-          </div>
         </div>
       </div>
     )
@@ -93,7 +89,8 @@ class Register extends React.Component {
 function mapDispatchToProps (dispatch) {
   return {
     loginUser: (userInfo, route, redirect) => dispatch(loginUser(userInfo, route, redirect)),
-    loginError: (message) => dispatch(loginError(message))
+    loginError: (authMessage) => dispatch(loginError(authMessage)),
+    imageError: (error) => dispatch(error(error))
   }
 }
 

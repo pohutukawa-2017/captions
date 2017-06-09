@@ -12,7 +12,7 @@ function CaptionList (props) {
       {props.captions.map((item, key) => {
         return (
           <div key={key}>
-            <CaptionListItem imageId={item.imageId} id={item.id} caption={item.captionText} />
+            <CaptionListItem imageId={item.imageId} id={item.id} authorId={item.userId} caption={item.captionText} />
           </div>
         )
       })}

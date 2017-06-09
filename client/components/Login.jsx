@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {loginUser} from '../actions'
-import ErrorMessage from './ErrorMessage'
 import {loginUrl} from '../api'
 
 class Login extends React.Component {
@@ -43,9 +42,6 @@ class Login extends React.Component {
           <p><input name='username' onChange={this.handleChange} placeholder='Username' /></p>
           <p><input type='password' name='password' onChange={this.handleChange} placeholder='Password' /></p>
           <p><button onClick={this.handleClick}>Login</button></p>
-          <div className='error-message'>
-            <ErrorMessage />
-          </div>
         </div>
       </div>
     )

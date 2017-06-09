@@ -10,9 +10,11 @@ button {
   height: 2rem;
   border-radius: 50%;
 }
+
 .navbar-container .site-name, .navbar-container .site-menu {
   width:50%;
 }
+
 navbar-container .site-menu {
   text-align:right;
 }
@@ -125,12 +127,13 @@ li {
   text-align: center;
 }
 
-li {
-  list-style: none;
-}
-
 .text-box {
   width: 300px;
   height: 75px;
   font-size: 20px;
+}
+
+.error {
+  color:red;
+  text-align: center;
 }
