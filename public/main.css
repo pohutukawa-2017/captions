@@ -8,6 +8,7 @@ nav.navbar-default {
   border-bottom: 1px solid #eee;
   margin-bottom:40px;
 }
+
 .navbar-header img {
  width: 40%;
 }
@@ -37,7 +38,6 @@ ul.navbar-nav li a {
   width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  clear:both;
 }
 
 .image-wrapper {
@@ -67,12 +67,16 @@ ul.navbar-nav li a {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  clear:both;
 }
 .profile-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.image-and-nav-buttons-container {
+  display: flex;
+  justify-content: row;
 }
 
 .image {
