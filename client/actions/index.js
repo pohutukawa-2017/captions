@@ -171,11 +171,16 @@ export const fetchImages = () => {
 export const getImagePath = (id) => {
   return (dispatch, getState) => {
     const state = getState()
-    if (!state.singleImage.id || state.singleImage.id !== id) {
-      getImageById(id, (err, res) => {
-        if (err) return console.log(err) // TODO: Error component
-        dispatch(imagePath(res))
-      })
+    if (!state.singleImage.id || state.singleImage.id !== Number(id)) {
+      const image = state.images.find((image) => image.id === Number(id))
+      if (!image) {
+        getImageById(id, (err, res) => {
+          if (err) return console.log(err) // TODO: Error component
+          dispatch(imagePath(res))
+        })
+      } else {
+        dispatch(imagePath(image))
+      }
     }
   }
 }
@@ -201,5 +206,12 @@ export const deleteCaption = (id, imageId) => {
         dispatch(captions(res))
       })
     })
+  }
+}
+
+export const getNextImage = (id) => {
+  return {
+    type: 'GET_NEXT_IMAGE',
+    id
   }
 }

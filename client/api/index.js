@@ -87,3 +87,16 @@ export function removeCaption (captionId, callback) {
       return callback(err)
     })
 }
+
+export function uploadImage (file, callback) {
+  request.post('https://api.cloudinary.com/v1_1/dboovyrqb/upload')
+    .field('upload_preset', 'p8w4fgph')
+    .field('file', file)
+    .end((err, res) => {
+      if (err) {
+        callback(err)
+      } else if (res.body.secure_url !== '') {
+        callback(null, res.body.secure_url)
+      }
+    })
+}

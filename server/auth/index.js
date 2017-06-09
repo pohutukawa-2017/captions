@@ -38,7 +38,7 @@ function verify (req, res, callback) {
   const username = req.body.username
   const password = req.body.password
   db.getUserByName(username, connection)
-    .then(users => {
+    .then((users) => {
       if (users.length === 0) {
         return res.status(403).json({
           message: 'Authentication failed',
@@ -71,9 +71,13 @@ function register (req, res, callback) {
     })
   }
   const passwordHash = crypto.getHash(req.body.password)
-  const user = {username: req.body.username, password_hash: passwordHash, profile_pic: req.body.profilePic}
+  const user = {
+    username: req.body.username,
+    password_hash: passwordHash,
+    profile_pic: req.body.profilePic || '/default-profile-pic.png'
+  }
   db.getUserByName(user.username, connection)
-    .then(users => {
+    .then((users) => {
       if (users.length !== 0) {
         return res.status(403).json({
           message: 'Registration failed',
