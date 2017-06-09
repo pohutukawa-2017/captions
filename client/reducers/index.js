@@ -16,6 +16,6 @@ export default combineReducers({
   captions,
   singleImage,
   imageUpload,
-  error,
-  waiting
+  waiting,
+  error
 })
