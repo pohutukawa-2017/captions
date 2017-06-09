@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Dropdown} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 import {logOut} from '../actions'
@@ -26,14 +25,15 @@ const Navbar = (props) => {
           <ul className='nav navbar-nav navbar-right'>
             {!props.auth.isAuthenticated && (<li><a href='/register'>Register</a></li>)}
             {!props.auth.isAuthenticated && (<li><a href='/login'>Sign in</a></li>)}
-            {props.auth.isAuthenticated && (<li>{'Hi '}
-              <Dropdown text={props.auth.user.username}>
-                <Dropdown.Menu>
-                  <Link to={`/users/${props.auth.user.id}`}><Dropdown.Item text='Profile' /></Link>
-                  <Dropdown.Item text='Logout' onClick={props.logOut} />
-                </Dropdown.Menu>
-              </Dropdown>
-            </li>)}
+            {props.auth.isAuthenticated && (
+              <li className='dropdown'>
+                <a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'> {'Hi, ' + props.auth.user.username}</a>
+                <ul className='dropdown-menu'>
+                  <li><Link to={`/users/${props.auth.user.id}`}>Profile</Link></li>
+                  <li><Link to='#' onClick={props.logOut}> Logout </Link></li>
+                </ul>
+              </li>
+            )}
           </ul>
         </div>
       </div>
