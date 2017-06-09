@@ -3,7 +3,7 @@ import {RECEIVE_PROFILE} from '../actions'
 const initialState = {
   id: 0,
   username: '',
-  profilePic: '',
+  profilePic: './defaultprofilepic.png',
   images: []
 }
 

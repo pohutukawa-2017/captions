@@ -13,7 +13,7 @@ class Register extends React.Component {
       username: '',
       password: '',
       confirm: '',
-      profilePic: 'http://stock.wikimini.org/w/images/9/95/Gnome-stock_person-avatar-profile.png',
+      profilePic: '',
       displayUpload: true,
       imageUploading: false
     }
