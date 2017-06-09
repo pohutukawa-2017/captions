@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-function withinBounds (index, arr) {
+function isWithinBounds (index, arr) {
   return index >= 0 && (index < arr.length)
 }
 
@@ -11,8 +11,8 @@ function Image (props) {
   const nextArrayId = imageIndex + 1
 
   // Assign image object if the prev/next index is within bounds of the array, otherwise assign null
-  const prevImage = withinBounds(prevArrayId, props.images) ? props.images[prevArrayId] : null
-  const nextImage = withinBounds(nextArrayId, props.images) ? props.images[nextArrayId] : null
+  const prevImage = isWithinBounds(prevArrayId, props.images) ? props.images[prevArrayId] : null
+  const nextImage = isWithinBounds(nextArrayId, props.images) ? props.images[nextArrayId] : null
 
   return (
     <div className='image-and-nav-buttons-container'>

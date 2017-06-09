@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getImagePath, getCaptionsList, fetchImages} from '../actions/'
+import {getImagePath, getCaptionsList, fetchImages} from '../actions'
 import CaptionList from './CaptionList'
 import Image from './Image'
 
