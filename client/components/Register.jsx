@@ -76,7 +76,7 @@ class Register extends React.Component {
           {this.state.profilePic &&
           <div>
             <h4>Upload Successful</h4>
-            <img src={this.state.profilePic} width="75" />
+            <img src={this.state.profilePic} />
           </div>}
 
           <p><button onClick={this.handleClick} disabled={this.state.imageUploading}>Register</button></p>
