@@ -37,7 +37,7 @@ function addUser (user, connection) {
 function getUser (userId, connection) {
   return connection('users')
     .select('users.id as userId', 'users.username', 'users.profile_pic', 'images.*')
-    .join('images', 'users.id', 'images.user_id')
+    .leftJoin('images', 'users.id', 'images.user_id')
     .where('users.id', userId)
 }
 

@@ -69,7 +69,7 @@ router.post('/captions/:imageId', (req, res) => {
   const connection = req.app.get('db')
   const caption = req.body
   caption.userId = Number(req.user.id)
-  db.postNewCaption(req.body, Number(req.params.imageId), connection)
+  db.postNewCaption(caption, Number(req.params.imageId), connection)
   .then((data) => {
     res.json({captionId: data[0]})
   })

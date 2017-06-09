@@ -38,10 +38,4 @@ class AddCaption extends React.Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    userId: state.auth.user.id
-  }
-}
-
-export default connect(mapStateToProps)(AddCaption)
+export default connect()(AddCaption)
