@@ -25,7 +25,6 @@ function Image (props) {
       </div>
       <div className='image'>
         <img src={url} />
-        {console.log(url)}
       </div>
       <div className='next-image'>
         {nextImage &&
