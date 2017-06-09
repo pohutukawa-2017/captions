@@ -18,5 +18,4 @@ export default combineReducers({
   profile,
   error,
   waitingIndicator
-
 })
