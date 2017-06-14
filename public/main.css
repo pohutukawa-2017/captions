@@ -166,5 +166,8 @@ li {
 }
 
 .waiting-indicator {
-  max-width: 170px;
+  max-width: 40px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
 }
